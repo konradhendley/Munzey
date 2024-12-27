@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Auth } from 'aws-amplify';
+import { signIn } from 'aws-amplify/auth';
 
-const Signup = () => {
-  const [name, setName] = useState('');
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -12,32 +11,18 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await Auth.signUp({
-        username: email,
-        password,
-        attributes: {
-          email, // Required attribute
-          name,  // Optional attribute
-        },
-      });
-      console.log('Signup successful');
-      navigate('/login');
+      await signIn(email, password);
+      console.log('Login successful');
+      navigate('/dashboard');
     } catch (err) {
-      setError(err.message);
+      setError(err.message);  
     }
   };
 
   return (
-    <div className="signup-container">
-      <h2>Sign Up</h2>
+    <div className="login-container">
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
         <label>Email:</label>
         <input
           type="email"
@@ -53,13 +38,13 @@ const Signup = () => {
           required
         />
         {error && <p className="error">{error}</p>}
-        <button type="submit">Sign Up</button>
+        <button type="submit">Login</button>
       </form>
       <p>
-        Already have an account? <a href="/login">Log in</a>
+        Don't have an account? <a href="/signup">Sign up</a>
       </p>
     </div>
   );
 };
 
-export default Signup;
+export default Login;

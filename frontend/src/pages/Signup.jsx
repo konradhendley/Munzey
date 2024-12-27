@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Auth } from 'aws-amplify'; // Amplify for Cognito interaction
+import { signUp } from 'aws-amplify/auth';
 
-const Login = () => {
+const Signup = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -11,18 +12,32 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await Auth.signIn(email, password); // Cognito login
-      console.log('Login successful');
-      navigate('/dashboard');
+      await signUp({
+        username: email,
+        password,
+        attributes: {
+          email, // Required attribute
+          name,  // Optional attribute
+        },
+      });
+      console.log('Signup successful');
+      navigate('/login');
     } catch (err) {
       setError(err.message);
     }
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
+    <div className="signup-container">
+      <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
+        <label>Name:</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
         <label>Email:</label>
         <input
           type="email"
@@ -38,13 +53,13 @@ const Login = () => {
           required
         />
         {error && <p className="error">{error}</p>}
-        <button type="submit">Login</button>
+        <button type="submit">Sign Up</button>
       </form>
       <p>
-        Don't have an account? <a href="/signup">Sign up</a>
+        Already have an account? <a href="/login">Log in</a>
       </p>
     </div>
   );
 };
 
-export default Login;
+export default Signup;
