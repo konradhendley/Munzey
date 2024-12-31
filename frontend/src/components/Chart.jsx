@@ -8,8 +8,8 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const Chart = ({ expenses }) => {
   // Prepare data for the chart
-  const labels = expenses.map((expense) => expense.date); // Assuming `expenses` is an array of objects with a `date` property
-  const dataValues = expenses.map((expense) => expense.amount); // Assuming `expenses` has an `amount` property
+  const labels = expenses.map((expense) => expense.date);
+  const dataValues = expenses.map((expense) => expense.amount);
 
   const data = {
     labels: labels,

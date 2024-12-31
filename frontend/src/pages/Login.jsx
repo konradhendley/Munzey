@@ -1,50 +1,83 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signIn } from 'aws-amplify/auth';
+import { CognitoIdentityProviderClient, InitiateAuthCommand } from '@aws-sdk/client-cognito-identity-provider';
+import Header from '../components/Header';
 
-const Login = () => {
-  const [email, setEmail] = useState('');
+const client = new CognitoIdentityProviderClient({ region: 'us-east-1' }); 
+
+function Login() {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleLogin = async (event) => {
+    event.preventDefault();
     try {
-      await signIn(email, password);
-      console.log('Login successful');
-      navigate('/dashboard');
+      const command = new InitiateAuthCommand({
+        AuthFlow: 'USER_PASSWORD_AUTH',
+        ClientId: 't8bgij0uga0qic6m1na4rgrua', 
+        AuthParameters: {
+          USERNAME: username,
+          PASSWORD: password,
+        },
+      });
+
+      const response = await client.send(command);
+      console.log('Login successful:', response);
+     
+       // Store tokens
+       localStorage.setItem('accessToken', response.AuthenticationResult.AccessToken);
+       localStorage.setItem('idToken', response.AuthenticationResult.IdToken);
+       localStorage.setItem('refreshToken', response.AuthenticationResult.RefreshToken);
+ 
+       // Redirect to the dashboard
+       navigate('/dashboard', { state: { username: username } });
+
+
     } catch (err) {
-      setError(err.message);  
+      console.error('Login failed:', err);
+      setError(err.message || 'An error occurred');
     }
   };
 
   return (
-    <div className="login-container">
+    <div>
+      <Header/>
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        {error && <p className="error">{error}</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <form onSubmit={handleLogin}>
+        <div>
+          <label>Username:</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Password:</label>
+          <input
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <label style={{ marginLeft: '8px' }}>
+            <input
+              type="checkbox"
+              checked={showPassword}
+              onChange={() => setShowPassword(!showPassword)}
+            />
+            Show Password
+          </label>
+        </div>
         <button type="submit">Login</button>
       </form>
-      <p>
-        Don't have an account? <a href="/signup">Sign up</a>
-      </p>
     </div>
   );
-};
+}
 
 export default Login;

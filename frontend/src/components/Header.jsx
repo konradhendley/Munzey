@@ -1,20 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom"; // If using React Router for navigation
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Header = () => {
   return (
-    <header>
-      <h1>Expense Tracker</h1>
+    <header className="header">
       <nav>
-        <ul>
+        <ul className="nav-links">
           <li>
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/expenses">Expenses</Link>
+            <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/add-expense">Add Expense</Link>
+            <Link to="/signup">Signup</Link>
           </li>
         </ul>
       </nav>
