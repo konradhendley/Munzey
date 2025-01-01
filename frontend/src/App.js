@@ -4,8 +4,12 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Verify from './pages/verifyUser';
 import Dashboard from './pages/Dashboard';
 import NotFoundPage from './pages/NotFoundPage';
+import ExpenseList from './components/ExpenseList';
+import ExpenseForm from './components/ExpenseForm';
+import ExpenseEdit from './components/ExpenseEdit';
 
 function App() {
   return (
@@ -15,7 +19,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/verify" element={<Verify />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/expenses" element={<ExpenseList />} />
+          <Route path="/createExpense" element={<ExpenseForm />} />
+          <Route path="/editExpense" element={<ExpenseEdit />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       

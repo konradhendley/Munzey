@@ -50,6 +50,7 @@ nav li a:hover {
   background-color: #45a049;
 }
 .expense-form {
+  position: relative;
   width: 100%;
   max-width: 500px;
   margin: 20px auto;
@@ -147,4 +148,18 @@ nav li a:hover {
 
 .nav-links a:hover {
   text-decoration: underline;
+}
+.cancel-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+}
+
+.cancel-icon:hover {
+  color: red;
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
 }

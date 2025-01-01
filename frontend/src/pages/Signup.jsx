@@ -4,9 +4,11 @@ import { CognitoIdentityProviderClient, SignUpCommand } from "@aws-sdk/client-co
 import Header from '../components/Header';
 
 const Signup = () => {
+  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
@@ -29,6 +31,14 @@ const Signup = () => {
             Name: "email",
             Value: email,
           },
+          {
+            Name: "phone_number",
+            Value: phoneNumber,
+          },
+          {
+            Name: "name",
+            Value: name,
+          },
         ],
       };
 
@@ -36,7 +46,7 @@ const Signup = () => {
       await client.send(command);
 
       setMessage("Signup successful! Please confirm your email before logging in.");
-      navigate("/login");
+      setTimeout(() => navigate("/verify"), 3000);
     } catch (err) {
       setError(err.message || "Signup failed. Please try again.");
     }
@@ -44,10 +54,17 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
-      <Header/>
+      <Header />
       <h2>Sign Up</h2>
       {message && <p className="success">{message}</p>}
       <form onSubmit={handleSubmit}>
+        <label>Full Name:</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
         <label>Username:</label>
         <input
           type="text"
@@ -60,6 +77,14 @@ const Signup = () => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <label>Phone Number:</label>
+        <input
+          type="tel"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          placeholder="+1234567890"
           required
         />
         <label>Password:</label>
