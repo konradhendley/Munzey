@@ -18,7 +18,7 @@ exports.handler = async (event) => {
         // DynamoDB query parameters
         const params = {
             TableName: 'Expenses',
-            IndexName: 'userId-index', // Replace with your GSI name if applicable
+            IndexName: 'userId-index',
             KeyConditionExpression: 'userId = :userId',
             ExpressionAttributeValues: {
                 ':userId': userId,

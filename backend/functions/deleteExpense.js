@@ -8,7 +8,6 @@ exports.handler = async (event) => {
         // Extract userId and expenseId
         const { userId, expenseId } = extractIds(event);
 
-        console.log('userId:', userId, 'expenseId:', expenseId);
 
         // Check if the expense exists and belongs to the user
         const getParams = {

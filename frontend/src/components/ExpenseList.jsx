@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import Header from '../components/Header';
 
-const ExpenseList = ({ user }) => {
+const ExpenseList = ({ user, showHeader = true }) => {
   const [expenses, setExpenses] = useState([]);
   const [error, setError] = useState(null);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isStandalone = location.pathname === '/expenses';
 
   useEffect(() => {
     const fetchExpenses = async () => {
@@ -52,11 +56,15 @@ const ExpenseList = ({ user }) => {
   };
 
   const handleEdit = (expenseId) => {
-    navigate(`/editExpense`, { state: { expenseId } });
+    console.log("expense to be edited", expenseId);
+    navigate(`/editExpense/${expenseId}`, { state: { expenseId } });
   };
 
   return (
+    <div>
+      {isStandalone && <Header />}
     <div className="expense-list">
+      
       <h2>Expenses</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {expenses.length > 0 ? (
@@ -87,6 +95,7 @@ const ExpenseList = ({ user }) => {
       ) : (
         <p>No expenses to display.</p>
       )}
+    </div>
     </div>
   );
 };

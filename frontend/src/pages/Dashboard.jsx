@@ -17,7 +17,7 @@ const Dashboard = () => {
       <div className="dashboard-actions">
         <a href="/createExpense">Create Expenses</a>
         <a href="/expenses">See All Expenses</a>
-        <ExpenseList/>
+        <ExpenseList showHeader={false}/>
         <a href="/chart">View Chart</a>
       </div>
     </div>

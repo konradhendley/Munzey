@@ -10,6 +10,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import ExpenseList from './components/ExpenseList';
 import ExpenseForm from './components/ExpenseForm';
 import ExpenseEdit from './components/ExpenseEdit';
+import Chart from './components/Chart';
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/expenses" element={<ExpenseList />} />
           <Route path="/createExpense" element={<ExpenseForm />} />
-          <Route path="/editExpense" element={<ExpenseEdit />} />
+          <Route path="/editExpense/:expenseId" element={<ExpenseEdit />} />
+          <Route path="/chart" element={<Chart />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       

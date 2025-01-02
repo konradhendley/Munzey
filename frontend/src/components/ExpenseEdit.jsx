@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import { useLocation } from 'react-router-dom';
 
-const ExpenseEdit = ({ expenseId }) => {
+
+const ExpenseEdit = () => {
+
+  const location = useLocation();
+  const { expenseId } = location.state || {}; 
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
@@ -13,6 +18,7 @@ const ExpenseEdit = ({ expenseId }) => {
   useEffect(() => {
     const fetchExpense = async () => {
       const token = localStorage.getItem('accessToken');
+    
       try {
         const response = await fetch(
           `https://fb8a21npal.execute-api.us-east-1.amazonaws.com/dev/expense/${expenseId}`,
@@ -40,7 +46,7 @@ const ExpenseEdit = ({ expenseId }) => {
     };
 
     fetchExpense();
-  }, [expenseId]);
+  });
 
   const handleSubmit = async (e, redirect = false) => {
     e.preventDefault();
@@ -70,9 +76,10 @@ const ExpenseEdit = ({ expenseId }) => {
 
       setSuccess(true);
       setError('');
-      if (redirect) {
-        // Redirect back to the previous page
-        window.history.back(); }
+      setSuccess('Expense updated successfully!');
+      setTimeout(() => {
+        window.history.back(); 
+      }, 1000);
     } catch (err) {
       setError(err.message);
       setSuccess(false);
@@ -111,7 +118,7 @@ const ExpenseEdit = ({ expenseId }) => {
   };
 
   const handleCancel = () => {
-    window.history.back(); // Redirect back to the previous page
+    window.history.back();
   };
 
   return (
