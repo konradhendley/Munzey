@@ -12,6 +12,8 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  console.log('LS at logout:', localStorage);
+
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
@@ -31,6 +33,8 @@ function Login() {
        localStorage.setItem('accessToken', response.AuthenticationResult.AccessToken);
        localStorage.setItem('idToken', response.AuthenticationResult.IdToken);
        localStorage.setItem('refreshToken', response.AuthenticationResult.RefreshToken);
+      //store username
+       localStorage.setItem('username', username);
  
        // Redirect to the dashboard
        navigate('/dashboard', { state: { username: username } });

@@ -56,7 +56,6 @@ const ExpenseList = ({ user, showHeader = true }) => {
   };
 
   const handleEdit = (expenseId) => {
-    console.log("expense to be edited", expenseId);
     navigate(`/editExpense/${expenseId}`, { state: { expenseId } });
   };
 

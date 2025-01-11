@@ -63,7 +63,7 @@ const ExpenseEdit = () => {
           },
           body: JSON.stringify({
             description,
-            amount,
+            amount: parseFloat(amount),
             category,
             date,
           }),

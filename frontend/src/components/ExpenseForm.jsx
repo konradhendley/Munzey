@@ -22,7 +22,7 @@ const ExpenseForm = () => {
         },
         body: JSON.stringify({
           description,
-          amount,
+          amount: parseFloat(amount),
           category,
           date,
         }),
