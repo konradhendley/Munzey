@@ -3,6 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from './Footer';
 
 // Register necessary components for Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -118,7 +119,8 @@ const Chart = () => {
   };
 
   return (
-    <div>
+    <div className={location.pathname === '/chart' ? 'wrapper' : ''}>
+      <div className={location.pathname === '/chart' ? 'content-container' : ''}>
       {location.pathname === '/chart' && <Header />}
       <div className="chart-container">
       {error && <p className="error">{error}</p>}
@@ -159,6 +161,8 @@ const Chart = () => {
         ) : (
           <Bar data={data} options={options} />
         )}
+      </div>
+      {location.pathname === '/chart' && <Footer />}
       </div>
     </div>
   );

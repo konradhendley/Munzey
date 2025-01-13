@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CognitoIdentityProviderClient, ConfirmSignUpCommand } from "@aws-sdk/client-cognito-identity-provider";
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Verify = () => {
   const [username, setUsername] = useState('');
@@ -34,7 +35,8 @@ const Verify = () => {
   };
 
   return (
-    <div className="verify-email-container">
+  <div className='wrapper'>
+    <div className="content-container">
         <Header/>
         <h2>Verify Your Email</h2>
         {message && <p className="success">{message}</p>}
@@ -56,7 +58,9 @@ const Verify = () => {
             />
             <button type="submit">Verify</button>
         </form>
+        <Footer/>
     </div>
+  </div>
   );
 };
 

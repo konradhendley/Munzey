@@ -11,6 +11,7 @@ import ExpenseList from './components/ExpenseList';
 import ExpenseForm from './components/ExpenseForm';
 import ExpenseEdit from './components/ExpenseEdit';
 import Chart from './components/Chart';
+import Account from './pages/Account';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/createExpense" element={<ExpenseForm />} />
           <Route path="/editExpense/:expenseId" element={<ExpenseEdit />} />
           <Route path="/chart" element={<Chart />} />
+          <Route path="/account" element={<Account />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       

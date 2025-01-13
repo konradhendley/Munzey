@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import Footer from './Footer';
 
 const ExpenseForm = () => {
   const [description, setDescription] = useState('');
@@ -55,7 +56,8 @@ const ExpenseForm = () => {
   };
 
   return (
-    <div>
+    <div className='wrapper'>
+      <div className='content-container'>
       <Header />
       <div className="expense-form">
         {/* "X" Cancel Icon */}
@@ -116,6 +118,8 @@ const ExpenseForm = () => {
             </button>
           </div>
         </form>
+      </div>
+      <Footer/>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import Footer from './Footer';
 import { useLocation } from 'react-router-dom';
 
 
@@ -122,7 +123,8 @@ const ExpenseEdit = () => {
   };
 
   return (
-    <div>
+    <div className='wrapper'>
+      <div className='content-containet'>
       <Header />
       <div className="expense-form">
         {/* "X" Cancel Icon */}
@@ -182,6 +184,8 @@ const ExpenseEdit = () => {
             </button>
           </div>
         </form>
+      </div>
+      <Footer/>
       </div>
     </div>
   );

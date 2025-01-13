@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from './Footer';
 
 const ExpenseList = ({ user, showHeader = true }) => {
   const [expenses, setExpenses] = useState([]);
@@ -60,7 +61,8 @@ const ExpenseList = ({ user, showHeader = true }) => {
   };
 
   return (
-    <div>
+    <div className={isStandalone ? 'wrapper' : ''}>
+      <div className={isStandalone ? 'content-container' : ''}>
       {isStandalone && <Header />}
     <div className="expense-list">
       
@@ -94,6 +96,8 @@ const ExpenseList = ({ user, showHeader = true }) => {
       ) : (
         <p>No expenses to display.</p>
       )}
+    </div>
+    {isStandalone && <Footer />}
     </div>
     </div>
   );

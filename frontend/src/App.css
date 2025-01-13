@@ -1,9 +1,20 @@
+html {
+  overflow: hidden;
+  height: 100%;
+}
+* {
+  box-sizing: border-box;
+}
 /* Global styles */
 body {
   font-family: Arial, sans-serif;
+  height: 100%;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
+  overflow: auto;
 }
 
 ul {
@@ -13,7 +24,7 @@ ul {
 
 a {
   text-decoration: none;
-  color: #333;
+  color: white;
 }
 
 /* Header styles */
@@ -22,6 +33,171 @@ header {
   color: white;
   padding: 15px 0;
   text-align: center;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .1) ;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.4) 100%);
+  padding: 1rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  color: white;
+}
+
+.header-left h1 {
+  margin-right: 20px;
+}
+
+.header-left ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header-left ul li {
+  margin-right: 15px;
+}
+
+.header-left ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.header-right {
+  position: relative;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.dropdown-menu ul li {
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.dropdown-menu ul li a,
+.dropdown-menu ul li button {
+  color: black;
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-menu ul li:hover {
+  background-color: #f0f0f0;
+}
+/* Left navigation (Folio + links) */
+.left-nav {
+  display: flex;
+  align-items: center;
+}
+
+.left-nav h1 {
+  margin-right: 20px;
+}
+
+.main-nav a {
+  margin-right: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.main-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Dropdown container */
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: black;
+  padding: 10px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 150px;
+  text-align: left;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  color: white;
+  text-decoration: none;
+  padding: 8px 10px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+/* Footer styles */
+footer {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  z-index: 1000;
+}
+
+.footer {
+  background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .9) 50%, rgba(0, 0, 0, 0.7) 100%);
+  padding: 1rem;
 }
 
 header h1 {
@@ -123,32 +299,8 @@ nav li a:hover {
   border-radius: 8px;
   background-color: #f9f9f9;
 }
-.header {
-  background-color: #333;
-  padding: 1rem;
-}
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
 
-.nav-links li {
-  margin: 0 1rem;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.nav-links a:hover {
-  text-decoration: underline;
-}
 .cancel-icon {
   position: absolute;
   top: 10px;
@@ -164,6 +316,20 @@ nav li a:hover {
   transition: all 0.2s ease-in-out;
 }
 
-.home{
-  
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  width: 100%;
+  flex-wrap: wrap;
+  background: linear-gradient(to bottom right, #4CAF50, #2196F3);
 }

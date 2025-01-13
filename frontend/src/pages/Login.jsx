@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CognitoIdentityProviderClient, InitiateAuthCommand } from '@aws-sdk/client-cognito-identity-provider';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const client = new CognitoIdentityProviderClient({ region: 'us-east-1' }); 
 
@@ -47,39 +48,45 @@ function Login() {
   };
 
   return (
-    <div>
-      <Header/>
-      <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
+    <div className='wrapper'>
+        <div className='content-container'>
+          <Header/>
+          <h2>Login</h2>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <form onSubmit={handleLogin}>
+            <div>
+              <label>Username:</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label>Password:</label>
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <label style={{ marginLeft: '8px' }}>
+                <input
+                  type="checkbox"
+                  checked={showPassword}
+                  onChange={() => setShowPassword(!showPassword)}
+                />
+                Show Password
+              </label>
+            </div>
+            <button type="submit">Login</button>
+          </form>
+          <p>
+        Don't have an account? <a href="/signup">Sign Up</a>
+      </p>
         </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <label style={{ marginLeft: '8px' }}>
-            <input
-              type="checkbox"
-              checked={showPassword}
-              onChange={() => setShowPassword(!showPassword)}
-            />
-            Show Password
-          </label>
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      <Footer/>
     </div>
   );
 }
