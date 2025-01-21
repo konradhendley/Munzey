@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ExpenseList from '../components/ExpenseList';
@@ -7,11 +6,8 @@ import Chart from '../components/Chart';
 
 const Dashboard = () => {
 
-  const location = useLocation();
-  const username = localStorage.getItem('username') || 'Guest';
 
-  console.log("User Info:", location);
-  console.log("local storage:", localStorage);
+  const username = localStorage.getItem('username') || 'Guest';
 
   return (
     <div className='wrapper'>    

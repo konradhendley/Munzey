@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from './Footer';
+import LoadingSpinner from './LoadingSpinner';
 
 const ExpenseList = ({ user, showHeader = true }) => {
   const [expenses, setExpenses] = useState([]);
@@ -59,6 +60,10 @@ const ExpenseList = ({ user, showHeader = true }) => {
   const handleEdit = (expenseId) => {
     navigate(`/editExpense/${expenseId}`, { state: { expenseId } });
   };
+
+  if (!expenses) {
+    return <LoadingSpinner/>;
+  }
 
   return (
     <div className={isStandalone ? 'wrapper' : ''}>

@@ -12,6 +12,9 @@ import ExpenseForm from './components/ExpenseForm';
 import ExpenseEdit from './components/ExpenseEdit';
 import Chart from './components/Chart';
 import Account from './pages/Account';
+import About from './pages/AboutPage';
+import Contact from './pages/ContactPage';
+
 
 function App() {
   return (
@@ -28,6 +31,8 @@ function App() {
           <Route path="/editExpense/:expenseId" element={<ExpenseEdit />} />
           <Route path="/chart" element={<Chart />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       

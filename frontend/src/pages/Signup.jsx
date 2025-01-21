@@ -56,7 +56,7 @@ const Signup = () => {
   return (
     <div className='wrapper'>
     <div className="content-container">
-      <div className='form-container'>
+      
       <Header />
       <h2>Sign Up</h2>
       {message && <p className="success">{message}</p>}
@@ -113,9 +113,8 @@ const Signup = () => {
       <p>
         Already have an account? <a href="/login">Log in</a>
       </p>
-    </div>
-    </div>
-    <Footer/>
+          <Footer/>
+        </div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from './Footer';
+import categories from '../data/categories';
 
 const ExpenseForm = () => {
   const [description, setDescription] = useState('');
@@ -85,16 +86,25 @@ const ExpenseForm = () => {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Expense amount"
+            min="0"
+            step="0.01" 
             required
           />
           <label>Category:</label>
-          <input
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            placeholder="Expense category"
-            required
-          />
+          <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value="" disabled>
+                Select a category
+              </option>
+              {categories.map((cat, index) => (
+                <option key={index} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
           <label>Date:</label>
           <input
             type="date"

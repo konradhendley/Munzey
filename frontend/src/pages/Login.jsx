@@ -13,8 +13,6 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  console.log('LS at logout:', localStorage);
-
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
@@ -28,7 +26,6 @@ function Login() {
       });
 
       const response = await client.send(command);
-      console.log('Login successful:', response);
      
        // Store tokens
        localStorage.setItem('accessToken', response.AuthenticationResult.AccessToken);
@@ -84,9 +81,9 @@ function Login() {
           </form>
           <p>
         Don't have an account? <a href="/signup">Sign Up</a>
-      </p>
-        </div>
+          </p>
       <Footer/>
+        </div>
     </div>
   );
 }

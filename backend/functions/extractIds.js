@@ -6,6 +6,16 @@ exports.extractUserId = (event) => {
     }
     return userId;
 };
+
+// Extract the username
+exports.extractUsername = (event) => {
+    const username = event.requestContext?.authorizer?.jwt?.claims?.username;
+    if (!username) {
+        throw new Error('Unauthorized: Missing username in claims');
+    }
+    return username;
+};
+
 //extract both user and expense id
 exports.extractIds = (event) => {
     const userId = exports.extractUserId(event);
