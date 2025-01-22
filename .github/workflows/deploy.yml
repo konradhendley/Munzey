@@ -1,0 +1,54 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20  # Use your local version (v20.5.1)
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Run tests
+      - name: Run Unit Tests
+        run: npm test
+
+      # Deploy Backend (Lambda + API Gateway)
+      - name: Deploy Lambda Function
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          zip -r function.zip .
+          aws lambda update-function-code \
+            --function-name your-lambda-function-name \
+            --zip-file fileb://function.zip \
+            --region $AWS_REGION
+
+      # Deploy Frontend (S3 + CloudFront)
+      - name: Deploy Frontend
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+        run: |
+          aws s3 sync ./frontend s3://$S3_BUCKET --delete
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"

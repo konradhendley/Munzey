@@ -1,0 +1,59 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Set up Node.js (Lambda Version)
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      # Install Dependencies (Frontend and Backend)
+      - name: Install Dependencies
+        run: |
+          npm install
+
+      # Run Jest Tests
+      - name: Run Jest Tests
+        run: |
+          npm test
+
+  cypress:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Set up Node.js (Local Versions)
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.5.1
+
+      # Install Dependencies
+      - name: Install Dependencies
+        run: |
+          npm install
+
+      # Run Cypress Tests
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v5
+        with:
+          runTests: true
