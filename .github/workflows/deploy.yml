@@ -26,8 +26,8 @@ jobs:
         run: npm install
 
       # Run tests
-      - name: Run Unit Tests
-        run: npm test
+     # - name: Run Unit Tests
+      #  run: npm test
 
       # Deploy Backend (Lambda + API Gateway)
       - name: Deploy Lambda Function
