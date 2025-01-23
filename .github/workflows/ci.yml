@@ -26,11 +26,13 @@ jobs:
       # Install Dependencies (Frontend and Backend)
       - name: Install Dependencies
         run: |
+          cd backend
           npm install
 
       # Run Jest Tests
       - name: Run Jest Tests
         run: |
+          cd backend
           npm test
 
   cypress:
@@ -50,6 +52,7 @@ jobs:
       # Install Dependencies
       - name: Install Dependencies
         run: |
+          cd frontend
           npm install
 
       # Run Cypress Tests
