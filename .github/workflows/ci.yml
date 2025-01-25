@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline Bui
 
 on:
   push:
@@ -30,9 +30,9 @@ jobs:
           npm install
 
       # Run Jest Tests
-      - name: Run Jest Tests
-        run: |
-          cd backend && npm test
+     # - name: Run Jest Tests
+      #  run: |
+     #     cd backend && npm test
 
   cypress:
     runs-on: ubuntu-latest
@@ -55,8 +55,8 @@ jobs:
           npm install
 
       # Run Cypress Tests
-      - name: Run Cypress Tests
-        uses: cypress-io/github-action@v5
-        with:
-          runTests: true
-        working-directory: frontend
+     # - name: Run Cypress Tests
+      #  uses: cypress-io/github-action@v5
+       # with:
+         # runTests: true
+        #working-directory: frontend

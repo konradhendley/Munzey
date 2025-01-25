@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline Deployment
 
 on:
   push:
@@ -19,27 +19,70 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20  # Use your local version (v20.5.1)
+          node-version: 20 
 
       # Install dependencies
       - name: Install Dependencies
-        run: npm install
+        run: |
+          cd frontend
+          npm install
 
       # Run tests
-     # - name: Run Unit Tests
+      #  name: Run Unit Tests
       #  run: npm test
 
-      # Deploy Backend (Lambda + API Gateway)
-      - name: Deploy Lambda Function
+      # Deploy GetUser Lambda Function
+      - name: Deploy GetUserFunction
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          zip -r function.zip .
+          cd backend
+          cd functions
+          mkdir getUserPackage
+          cp getUser.js extractIds.js getUserPackage/
+          cd getUserPackage
+          zip -r getUserFunction.zip .
           aws lambda update-function-code \
-            --function-name your-lambda-function-name \
-            --zip-file fileb://function.zip \
+            --function-name GetUserFunction \
+            --zip-file fileb://getUserFunction.zip \
+            --region $AWS_REGION
+
+      # Deploy UpdateUsers Lambda Function
+      - name: Deploy UpdateUserFunction
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          cd backend
+          cd functions
+          mkdir updateUserPackage
+          cp updateUser.js extractIds.js updateUserPackage/
+          cd updateUserPackage
+          zip -r updateUserFunction.zip .
+          aws lambda update-function-code \
+            --function-name UpdateUserFunction \
+            --zip-file fileb://updateUserFunction.zip \
+            --region $AWS_REGION
+
+      # Deploy DeleteUser Lambda Function
+      - name: Deploy DeleteUserFunction
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          cd backend
+          cd functions
+          mkdir deleteUserPackage
+          cp deleteUser.js extractIds.js deleteUserPackage/
+          cd deleteUserPackage
+          zip -r deleteUserFunction.zip .
+          aws lambda update-function-code \
+            --function-name DeleteUserFunction \
+            --zip-file fileb://deleteUserFunction.zip \
             --region $AWS_REGION
 
       # Deploy Frontend (S3 + CloudFront)
@@ -50,5 +93,8 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
         run: |
-          aws s3 sync ./frontend s3://$S3_BUCKET --delete
+          cd frontend
+          npm install
+          npm run build
+          aws s3 sync ./build s3://$S3_BUCKET --delete
           aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"

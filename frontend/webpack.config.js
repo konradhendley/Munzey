@@ -1,11 +1,13 @@
 const path = require('path');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: './src/index.js',  // Your entry point, adjust if it's different
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js'
   },
   devServer: {
     static: path.join(__dirname, 'public'),
@@ -38,6 +40,7 @@ module.exports = {
     },
   },
   plugins: [
-    new NodePolyfillPlugin(),  // Add the polyfill plugin
+    new NodePolyfillPlugin(),
+    new CleanWebpackPlugin(),
   ],
 };
