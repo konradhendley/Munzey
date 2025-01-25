@@ -1,22 +1,31 @@
 const path = require('path');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: './src/index.js',  // Your entry point, adjust if it's different
+  entry: './src/index.js', 
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    filename: 'static/js/[name].[contenthash].js',
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   devServer: {
     static: path.join(__dirname, 'public'),
-    port: 3000,  // This should match the port your React app runs on
+    port: 3000, 
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/, // Apply to .js and .jsx files
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -26,8 +35,8 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/, // Add this rule to handle CSS files
-        use: ['style-loader', 'css-loader'], // Process CSS files with these loaders
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
     ],
   },
@@ -42,5 +51,25 @@ module.exports = {
   plugins: [
     new NodePolyfillPlugin(),
     new CleanWebpackPlugin(),
+    new WebpackManifestPlugin({
+        fileName: 'asset-manifest.json',
+    }),
+    new CopyWebpackPlugin({
+        patterns: [
+          { from: 'public/favicon.ico', to: '' },
+          { from: 'public/logo192.png', to: '' },
+          { from: 'public/logo512.png', to: '' },
+          { from: 'public/manifest.json', to: '' },
+          { from: 'public/robots.txt', to: '' },
+        ],
+      }),
+      new MiniCssExtractPlugin({
+        filename: 'static/css/[name].[contenthash].css',
+    }),
+    new HtmlWebpackPlugin({
+        template: './public/index.html', // Path to your base HTML file
+        filename: 'index.html',         // Output HTML file name
+        inject: true,
+    }),
   ],
 };
