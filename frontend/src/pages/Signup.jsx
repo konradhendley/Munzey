@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { CognitoIdentityProviderClient, SignUpCommand } from "@aws-sdk/client-cognito-identity-provider";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -111,7 +111,7 @@ const Signup = () => {
         <button type="submit">Sign Up</button>
       </form>
       <p>
-        Already have an account? <a href="/login">Log in</a>
+        Already have an account? <Link to="/login">Log in</Link>
       </p>
           <Footer/>
         </div>

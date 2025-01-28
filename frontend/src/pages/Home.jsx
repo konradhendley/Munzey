@@ -9,7 +9,7 @@ const Home = () => {
             
             <div className="content-container">
                 <Header/>
-                    <h2>Welcome to Folio</h2>
+                    <h2>Welcome to Munzey</h2>
                         <div>
                             <Link to="/login">
                                 <button>Login</button>

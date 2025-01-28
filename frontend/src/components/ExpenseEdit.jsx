@@ -124,7 +124,7 @@ const ExpenseEdit = () => {
 
   return (
     <div className='wrapper'>
-      <div className='content-containet'>
+      <div className='content-container'>
       <Header />
       <div className="expense-form">
         {/* "X" Cancel Icon */}

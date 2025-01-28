@@ -1,4 +1,4 @@
-name: CI/CD Pipeline Bui
+name: CI/CD Pipeline Build
 
 on:
   push:

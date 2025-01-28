@@ -40,6 +40,7 @@ module.exports = {
       },
     ],
   },
+  
   resolve: {
     extensions: ['.js', '.jsx'],
     fallback: {
@@ -67,8 +68,8 @@ module.exports = {
         filename: 'static/css/[name].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
-        template: './public/index.html', // Path to your base HTML file
-        filename: 'index.html',         // Output HTML file name
+        template: './public/index.html',
+        filename: 'index.html',        
         inject: true,
     }),
   ],

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className='footer'>
-      <p>&copy; 2025 Folio</p>
+      <p>&copy; 2025 Munzey</p>
       
       <nav>
         <ul>

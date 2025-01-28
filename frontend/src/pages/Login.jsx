@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { CognitoIdentityProviderClient, InitiateAuthCommand } from '@aws-sdk/client-cognito-identity-provider';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -80,7 +80,7 @@ function Login() {
             <button type="submit">Login</button>
           </form>
           <p>
-        Don't have an account? <a href="/signup">Sign Up</a>
+        Don't have an account? <Link to="/signup">Sign Up</Link>
           </p>
       <Footer/>
         </div>

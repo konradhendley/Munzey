@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="left-nav">
-        <h1><a href="/">Folio</a></h1>
+        <h1><a href="/">Munzey</a></h1>
         {token && (
           <nav className="main-nav">
             <Link to="/dashboard">Dashboard</Link>

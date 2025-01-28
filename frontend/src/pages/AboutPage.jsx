@@ -9,7 +9,7 @@ const About = () => {
       <div className='content-container'>
         <Header />
             <div>
-            <p>Folio is an expense tracking app created by <a href='https://www.linkedin.com/in/konradhendley/'>Konrad Hendley</a> in 2025. The goal of this project is to help people be more aware of their finances and increase their financial literacy. 
+            <p>Munzey is an expense tracking app created by <a href='https://www.linkedin.com/in/konradhendley/'>Konrad Hendley</a> in 2025. The name comes from the German word "munze" which means coin. The goal of this project is to help people be more aware of their finances and increase their financial literacy. 
                 If you have any questions or would like to leave feedback, please feel free to <Link to="/contact">contact us</Link>! </p>
             </div>
                  

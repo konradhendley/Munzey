@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from './Footer';
 import LoadingSpinner from './LoadingSpinner';
@@ -69,39 +69,40 @@ const ExpenseList = ({ user, showHeader = true }) => {
     <div className={isStandalone ? 'wrapper' : ''}>
       <div className={isStandalone ? 'content-container' : ''}>
       {isStandalone && <Header />}
-    <div className="expense-list">
-      
-      <h2>Expenses</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {expenses.length > 0 ? (
-        <table>
-          <thead>
-            <tr>
-              <th onClick={() => handleSort('description')}>Description</th>
-              <th onClick={() => handleSort('amount')}>Amount</th>
-              <th onClick={() => handleSort('category')}>Category</th>
-              <th onClick={() => handleSort('date')}>Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {expenses.map((expense) => (
-              <tr key={expense.expenseId}>
-                <td>{expense.description}</td>
-                <td>${expense.amount}</td>
-                <td>{expense.category}</td>
-                <td>{new Date(expense.date).toLocaleDateString()}</td>
-                <td>
-                  <button onClick={() => handleEdit(expense.expenseId)}>Edit</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p>No expenses to display.</p>
-      )}
-    </div>
+      <Link to="/createExpense">Create Expenses</Link>
+          <div className="expense-list">
+            
+            <h2>Expenses</h2>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {expenses.length > 0 ? (
+              <table>
+                <thead>
+                  <tr>
+                    <th onClick={() => handleSort('description')}>Description</th>
+                    <th onClick={() => handleSort('amount')}>Amount</th>
+                    <th onClick={() => handleSort('category')}>Category</th>
+                    <th onClick={() => handleSort('date')}>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {expenses.map((expense) => (
+                    <tr key={expense.expenseId}>
+                      <td>{expense.description}</td>
+                      <td>${expense.amount}</td>
+                      <td>{expense.category}</td>
+                      <td>{new Date(expense.date).toLocaleDateString()}</td>
+                      <td>
+                        <button onClick={() => handleEdit(expense.expenseId)}>Edit</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>No expenses to display.</p>
+            )}
+          </div>
     {isStandalone && <Footer />}
     </div>
     </div>
