@@ -38,6 +38,8 @@ const Verify = () => {
   <div className='wrapper'>
     <div className="content-container">
         <Header/>
+        <div className='form-container'>
+        < div className="generic-form">
         <h2>Verify Your Email</h2>
         {message && <p className="success">{message}</p>}
         {error && <p className="error">{error}</p>}
@@ -58,6 +60,8 @@ const Verify = () => {
             />
             <button type="submit">Verify</button>
         </form>
+        </div>
+        </div>
         <Footer/>
     </div>
   </div>

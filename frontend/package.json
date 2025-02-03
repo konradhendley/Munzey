@@ -5,6 +5,11 @@
   "dependencies": {
     "@aws-amplify/auth": "^6.9.0",
     "@aws-sdk/client-cognito-identity-provider": "^3.716.0",
+    "@fullcalendar/daygrid": "^6.1.15",
+    "@fullcalendar/interaction": "^6.1.15",
+    "@fullcalendar/react": "^6.1.15",
+    "@fullcalendar/timegrid": "^6.1.15",
+    "amazon-cognito-identity-js": "^6.3.12",
     "aws-amplify": "^6.11.0",
     "chart.js": "^4.4.7",
     "jwt-decode": "^4.0.0",

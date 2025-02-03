@@ -20,6 +20,7 @@ const Header = () => {
             <Link to="/dashboard">Dashboard</Link>
             <Link to="/expenses">Expenses</Link>
             <Link to="/chart">Charts</Link>
+            <Link to="/calendar">Calendar</Link>
           </nav>
         )}
       </div>

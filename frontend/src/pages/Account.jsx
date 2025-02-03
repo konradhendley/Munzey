@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const Account = () => {
   const [userData, setUserData] = useState(null);
+  const location = useLocation();
   const [error, setError] = useState('');
   const [isEditing, setIsEditing] = useState(false); // State to toggle edit mode
   const [formData, setFormData] = useState({
@@ -12,6 +14,9 @@ const Account = () => {
     email: '',
     phone_number: '',
   });
+
+
+  const isStandalone = location.pathname === '/account';
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -102,7 +107,7 @@ const Account = () => {
 
         alert('Account deleted successfully!');
         localStorage.clear();
-        window.location.href = '/'; // Redirect to home or login page
+        window.location.href = '/';
       } catch (err) {
         console.error('Error deleting account:', err);
         setError(err.message || 'Failed to delete account.');
@@ -115,7 +120,7 @@ const Account = () => {
   }
 
   if (!userData) {
-    return <LoadingSpinner/>;
+    return <LoadingSpinner standalone={isStandalone}/>;
   }
 
   const { email_verified, phone_number_verified } = userData.attributes;
@@ -124,26 +129,9 @@ const Account = () => {
     <div className='wrapper'>
       <div className='content-container'>
         <Header />
-        <div>
-          <h2>Account Details</h2>
-          {!isEditing ? (
-            // View Mode
-            <div>
-              <p><strong>Name:</strong> {formData.name}</p>
-              <p><strong>Email:</strong> {formData.email}</p>
-              <p>
-                <strong>Email Verified:</strong>{' '}
-                <input type="checkbox" checked={email_verified} disabled />
-              </p>
-              <p><strong>Phone Number:</strong> {formData.phone_number}</p>  
-              <p>
-                <strong>Phone Number Verified:</strong>{' '}
-                <input type="checkbox" checked={phone_number_verified} disabled />
-              </p>
-            </div>
-          ) : (
-            // Edit Mode
-            <form>
+          <div className='form-container'>
+            <form className='generic-form'>
+              <h2>Account Details</h2>
               <div>
                 <label>Name:</label>
                 <input
@@ -151,7 +139,7 @@ const Account = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
+                  readOnly={!isEditing}
                 />
               </div>
               <div>
@@ -161,8 +149,12 @@ const Account = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
+                  readOnly={!isEditing}
                 />
+              </div>
+              <div className="checkbox-container">
+                <label>Email Verified:</label>
+                <input type="checkbox" checked={email_verified} disabled />
               </div>
               <div>
                 <label>Phone Number:</label>
@@ -171,23 +163,26 @@ const Account = () => {
                   name="phone_number"
                   value={formData.phone_number}
                   onChange={handleChange}
-                  required
+                  readOnly={!isEditing}
                 />
               </div>
-            </form>
-          )}
+              <div className="checkbox-container">
+                <label>Phone Verified:</label>
+                <input type="checkbox" checked={phone_number_verified} disabled />
+              </div>
+         
+  
           {isEditing ? (
             <>
               <button onClick={handleSave}>Save</button>
               <button onClick={() => setIsEditing(false)}>Cancel</button>
-              <button onClick={handleDeleteAccount} style={{ color: 'red' }}>
-                Delete Account
-              </button>
+              <Link onClick={handleDeleteAccount} style={{ color: 'red' }}>Delete Account</Link>
             </>
           ) : (
             <button onClick={() => setIsEditing(true)}>Edit</button>
           )}
-        </div>
+             </form>
+          </div>
         <Footer />
       </div>
     </div>

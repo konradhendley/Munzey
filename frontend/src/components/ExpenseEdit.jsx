@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from './Footer';
 import { useLocation } from 'react-router-dom';
+import categories from '../data/categories';
 
 
 const ExpenseEdit = () => {
@@ -17,6 +18,9 @@ const ExpenseEdit = () => {
 
   // Fetch the expense details for the given expenseId when the component loads
   useEffect(() => {
+
+    if (!expenseId) return; 
+
     const fetchExpense = async () => {
       const token = localStorage.getItem('accessToken');
     
@@ -47,7 +51,7 @@ const ExpenseEdit = () => {
     };
 
     fetchExpense();
-  });
+  }, [expenseId]);
 
   const handleSubmit = async (e, redirect = false) => {
     e.preventDefault();
@@ -126,15 +130,12 @@ const ExpenseEdit = () => {
     <div className='wrapper'>
       <div className='content-container'>
       <Header />
-      <div className="expense-form">
-        {/* "X" Cancel Icon */}
-        <button className="cancel-icon" onClick={handleCancel}>
-          &times;
-        </button>
+      <div className='form-container'>
+      <form className="generic-form" onSubmit={handleSubmit}>
         <h2>Edit Expense</h2>
         {success && <p className="success">{success}</p>}
         {error && <p className="error">{error}</p>}
-        <form onSubmit={handleSubmit}>
+        
           <label>Description:</label>
           <input
             type="text"
@@ -152,13 +153,20 @@ const ExpenseEdit = () => {
             required
           />
           <label>Category:</label>
-          <input
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            placeholder="Expense category"
-            required
-          />
+          <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value="" disabled>
+                Select a category
+              </option>
+              {categories.map((cat, index) => (
+                <option key={index} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
           <label>Date:</label>
           <input
             type="date"
@@ -167,27 +175,15 @@ const ExpenseEdit = () => {
             required
           />
           <div className="button-group">
-            <button type="submit">Update Expense</button>
-            <button
-              type="button"
-              onClick={handleDelete}
-              style={{ marginLeft: '10px' }}
-            >
-              Delete Expense
-            </button>
-            <button
-              type="button"
-              onClick={handleCancel}
-              style={{ marginLeft: '10px' }}
-            >
-              Cancel
-            </button>
+            <button type="submit">Update </button>
+            <button type="button" onClick={handleDelete}> Delete</button>
+            <button type="button"onClick={handleCancel} > Cancel </button>
           </div>
         </form>
       </div>
       <Footer/>
-      </div>
     </div>
+  </div>
   );
 };
 

@@ -56,11 +56,11 @@ const Signup = () => {
   return (
     <div className='wrapper'>
     <div className="content-container">
-      
       <Header />
-      <h2>Sign Up</h2>
+      <div className='form-container'>
       {message && <p className="success">{message}</p>}
-      <form onSubmit={handleSubmit}>
+      <form className='generic-form' onSubmit={handleSubmit}>
+      <h2>Sign Up</h2>
         <label>Full Name:</label>
         <input
           type="text"
@@ -91,22 +91,21 @@ const Signup = () => {
           required
         />
         <label>Password:</label>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
           <input
             type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <label style={{ marginLeft: '8px' }}>
+          <div className="checkbox-container">
             <input
               type="checkbox"
               checked={showPassword}
               onChange={() => setShowPassword(!showPassword)}
             />
-            Show Password
-          </label>
-        </div>
+            <label>Show Password</label>
+          </div>
+        
         {error && <p className="error">{error}</p>}
         <button type="submit">Sign Up</button>
       </form>
@@ -115,6 +114,7 @@ const Signup = () => {
       </p>
           <Footer/>
         </div>
+    </div>
     </div>
   );
 };

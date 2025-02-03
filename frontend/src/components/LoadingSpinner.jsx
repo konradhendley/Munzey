@@ -2,16 +2,16 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ standalone = true}) => {
   return (
-    <div className='wrapper'>
-      <div className='content-container'>
-        <Header />
+    <div className={standalone ? 'wrapper' : ''}>
+      <div className={standalone ? 'content-container' : ''}>
+       {standalone && <Header />} 
             <div>
             <div className="spinner"></div>
             <p>Loading...</p>
-            </div>
-            <Footer/>
+            </div> 
+            {standalone && <Footer/>} 
         </div>
     </div>
   );

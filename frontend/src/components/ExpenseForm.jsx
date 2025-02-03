@@ -60,18 +60,11 @@ const ExpenseForm = () => {
     <div className='wrapper'>
       <div className='content-container'>
       <Header />
-      <div className="expense-form">
-        {/* "X" Cancel Icon */}
-        <button
-          className="cancel-icon"
-          onClick={handleCancel}
-        >
-          &times;
-        </button>
-        <h2>Add New Expense</h2>
+      <div className="form-container">
         {success && <p className="success">Expense saved successfully!</p>}
         {error && <p className="error">{error}</p>}
-        <form>
+        <form className='generic-form'>
+        <h2>Add New Expense</h2>
           <label>Description:</label>
           <input
             type="text"
@@ -113,19 +106,9 @@ const ExpenseForm = () => {
             required
           />
           <div className="button-group">
-            <button type="button" onClick={(e) => handleSubmit(e, true)}>
-              Save and Go Back
-            </button>
-            <button type="button" onClick={(e) => handleSubmit(e, false)}>
-              Save and Add Another
-            </button>
-            <button
-              type="button"
-              onClick={handleCancel}
-              style={{ marginLeft: '10px' }}
-            >
-              Cancel
-            </button>
+            <button type="button" onClick={(e) => handleSubmit(e, true)}> Save and exit </button>
+            <button type="button" onClick={(e) => handleSubmit(e, false)}>  Save and Add Another </button>
+            <button type="button" onClick={handleCancel}> Cancel </button>
           </div>
         </form>
       </div>
