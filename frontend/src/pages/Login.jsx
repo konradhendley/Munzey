@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { CognitoIdentityProviderClient, InitiateAuthCommand } from '@aws-sdk/client-cognito-identity-provider';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { config } from '../congif';
 
 
 const client = new CognitoIdentityProviderClient({ region: 'us-east-1' });
@@ -19,7 +20,7 @@ function Login() {
     try {
       const command = new InitiateAuthCommand({
         AuthFlow: 'USER_PASSWORD_AUTH',
-        ClientId: 't8bgij0uga0qic6m1na4rgrua',
+        ClientId: config.CLIENT_ID,
         AuthParameters: {
           USERNAME: username,
           PASSWORD: password,

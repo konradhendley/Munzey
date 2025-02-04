@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { CognitoIdentityProviderClient, SignUpCommand } from "@aws-sdk/client-cognito-identity-provider";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { config } from '../congif';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -16,7 +17,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const client = new CognitoIdentityProviderClient({
-    region: "us-east-1",
+    region: config.REGION,
   });
 
   const handleSubmit = async (e) => {
@@ -24,7 +25,7 @@ const Signup = () => {
 
     try {
       const params = {
-        ClientId: "t8bgij0uga0qic6m1na4rgrua",
+        ClientId: config.CLIENT_ID,
         Username: username,
         Password: password,
         UserAttributes: [
