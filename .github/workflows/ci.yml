@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  Jest:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,6 +33,7 @@ jobs:
       - name: Run Jest Tests
         run: |
           cd backend
+          npm install
           npm test
 
   cypress:
