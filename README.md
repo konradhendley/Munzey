@@ -7,5 +7,5 @@ Current Status
 
 Next Steps
 
-	•	Add jest testing
 	•	Add Cypress testing
+	•	Improve UI/UX for some features
