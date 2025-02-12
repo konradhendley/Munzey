@@ -25,6 +25,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+# But do NOT ignore Jest’s build files
+!node_modules/jest-cli/build/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
