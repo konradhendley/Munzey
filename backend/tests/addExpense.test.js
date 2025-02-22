@@ -1,4 +1,4 @@
-const { handler: addExpense } = require('../functions/addExpense');
+const { addExpense } = require('../functions/manageExpenses');
 const AWS = require('aws-sdk');
 
 // Mock extractUserId to return a fake user ID

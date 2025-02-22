@@ -30,11 +30,10 @@ jobs:
           npm install
 
       # Run Jest Tests
-      #- name: Run Jest Tests
-      #  run: |
-      #    cd backend
-      #    npm install
-      #    npm test
+      - name: Run Jest Tests
+        run: |
+          cd backend
+          npm test
 
   cypress:
     runs-on: ubuntu-latest

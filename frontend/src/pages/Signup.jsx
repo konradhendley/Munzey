@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { CognitoIdentityProviderClient, SignUpCommand } from "@aws-sdk/client-cognito-identity-provider";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { config } from '../congif';
+import { config } from '../config';
 
 const Signup = () => {
   const [name, setName] = useState('');

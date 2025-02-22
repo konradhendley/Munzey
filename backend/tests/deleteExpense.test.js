@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const deleteExpense = require('../functions/deleteExpense');
+const { deleteExpense } = require('../functions/manageExpenses');
 
 // Mock the DocumentClient's get and delete methods
 jest.mock('aws-sdk', () => {
@@ -48,7 +48,7 @@ describe('deleteExpense handler', () => {
             }
         };
 
-        const response = await deleteExpense.handler(event);
+        const response = await deleteExpense(event);
 
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(response.body)).toEqual({
@@ -82,7 +82,7 @@ describe('deleteExpense handler', () => {
             }
         };
 
-        const response = await deleteExpense.handler(event);
+        const response = await deleteExpense(event);
 
         expect(response.statusCode).toBe(404);
         expect(JSON.parse(response.body)).toEqual({
@@ -109,7 +109,7 @@ describe('deleteExpense handler', () => {
             }
         };
 
-        const response = await deleteExpense.handler(event);
+        const response = await deleteExpense(event);
 
         expect(response.statusCode).toBe(500);
         expect(JSON.parse(response.body)).toEqual({
