@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/styles.css';
 import React, {useEffect} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { initializeAuthListeners, checkSession } from "./utils/authUtils";

@@ -1,0 +1,70 @@
+header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .1) ;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.4) 100%);
+  padding: 1rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  color: white;
+  margin: 0;
+  font-size: 2rem;
+}
+
+.header-left h1 {
+  margin-right: 20px;
+}
+
+.header-left ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header-left ul li {
+  margin-right: 15px;
+}
+
+.header-left ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.header-right {
+  position: relative;
+}
+  
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+}
+  
+.main-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Left navigation for header */
+.left-nav {
+  display: flex;
+  align-items: center;
+}
+
+.left-nav h1 {
+  margin-right: 20px;
+}

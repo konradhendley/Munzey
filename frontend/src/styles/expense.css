@@ -1,0 +1,118 @@
+.expense-list {
+  width: 100%;
+  max-width: 600px;
+  max-height: 550px;
+  margin: 20px auto;
+  padding: 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  background: rgba(0, 0, 0, 0.7); 
+  color: white;
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+}
+
+.expense-list h2 {
+  text-align: center;
+}
+
+.expense-list ul {
+  padding: 0;
+}
+
+.expense-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1rem;
+}
+
+.expense-list li:last-child {
+  border-bottom: none;
+}
+
+.expense-list th {
+  cursor: pointer;
+  color: white; 
+}
+
+th:hover {
+  text-decoration: underline;
+}
+
+.expense-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.expense-list th,
+.expense-list td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.expense-list thead {
+  position: sticky;
+  top: 0;
+  background: #222; 
+  z-index: 2;
+}
+
+.expense-table-container {
+  max-height: 400px; 
+  overflow-y: auto;  
+  display: block;
+}
+
+.expense-table-container button {
+  background-color: green; 
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+}
+
+.expense-table-container button:hover {
+  background-color: #008829; 
+}
+
+
+
+.back-button-container {
+  display: flex;
+  justify-content: flex-end; 
+  margin-bottom: 10px;
+}
+
+.back-button {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.back-button:hover {
+  background-color: #667;
+}
+
+.create-expense-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.create-expense-link a {
+  color: #1db954;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.create-expense-link a:hover {
+  text-decoration: underline;
+}
