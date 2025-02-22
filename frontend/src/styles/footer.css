@@ -1,0 +1,36 @@
+footer {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    z-index: 1000;
+  }
+  
+  .footer {
+    background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .9) 50%, rgba(0, 0, 0, 0.7) 100%);
+    padding: 1rem;
+  }
+  
+  nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  nav li {
+    font-size: 1.1rem;
+  }
+
+  nav li a {
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  nav li a:hover {
+    background-color: #45a049;
+  }
