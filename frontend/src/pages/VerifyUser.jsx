@@ -3,6 +3,7 @@ import { CognitoIdentityProviderClient, ConfirmSignUpCommand } from "@aws-sdk/cl
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { config } from '../config';
 
 const Verify = () => {
   const [username, setUsername] = useState('');
@@ -12,14 +13,14 @@ const Verify = () => {
   const navigate = useNavigate();
 
   const client = new CognitoIdentityProviderClient({
-    region: "us-east-1",
+    region: config.REGION,
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const params = {
-        ClientId: "t8bgij0uga0qic6m1na4rgrua", 
+        ClientId: config.CLIENT_ID, 
         Username: username,
         ConfirmationCode: code,
       };

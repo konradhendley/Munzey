@@ -1,6 +1,6 @@
 // authUtils.js
 import { CognitoUserPool } from "amazon-cognito-identity-js";
-import { config } from "../congif";
+import { config } from "../config";
 
 let logoutTimer;
 
