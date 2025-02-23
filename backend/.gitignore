@@ -27,6 +27,7 @@ share/python-wheels/
 MANIFEST
 # But do NOT ignore Jest’s build files
 !node_modules/jest-cli/build/
+!node_modules/jest-util/build/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

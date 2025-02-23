@@ -1,6 +1,5 @@
 const AWS = require('aws-sdk');
-const updateExpense  = require('../functions/updateExpense');
-//const { extractIds } = require('../functions/extractIds');
+const { updateExpense } = require('../functions/manageExpenses');
 
 // Mock the DocumentClient's update method
 jest.mock('aws-sdk', () => {
@@ -64,7 +63,7 @@ describe('updateExpense handler', () => {
             })
         };
 
-        const response = await updateExpense.handler(event);
+        const response = await updateExpense(event);
 
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(response.body)).toEqual({

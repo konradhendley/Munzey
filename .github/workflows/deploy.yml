@@ -31,8 +31,8 @@ jobs:
       #  name: Run Unit Tests
       #  run: npm test
 
-      # Deploy GetUser Lambda Function
-      - name: Deploy GetUserFunction
+      # Deploy manageExpenses Lambda Function
+      - name: Deploy manageExpensesFunction
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -40,17 +40,17 @@ jobs:
         run: |
           cd backend
           cd functions
-          mkdir getUserPackage
-          cp getUser.js extractIds.js getUserPackage/
-          cd getUserPackage
-          zip -r getUserFunction.zip .
+          mkdir manageExpensesPackage
+          cp manageExpenses.js extractIds.js manageExpensesPackage/
+          cd manageExpensesPackage
+          zip -r manageExpensesFunction.zip .
           aws lambda update-function-code \
-            --function-name GetUserFunction \
-            --zip-file fileb://getUserFunction.zip \
+            --function-name manageExpensesFunction \
+            --zip-file fileb://manageExpensesFunction.zip \
             --region $AWS_REGION
 
-      # Deploy UpdateUsers Lambda Function
-      - name: Deploy UpdateUserFunction
+      # Deploy manageUsers Lambda Function
+      - name: Deploy manageUsersFunction
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -58,17 +58,17 @@ jobs:
         run: |
           cd backend
           cd functions
-          mkdir updateUserPackage
-          cp updateUser.js extractIds.js updateUserPackage/
-          cd updateUserPackage
-          zip -r updateUserFunction.zip .
+          mkdir manageUsersPackage
+          cp manageUsers.js extractIds.js manageUsersPackage/
+          cd manageUsersPackage
+          zip -r manageUsersFunction.zip .
           aws lambda update-function-code \
-            --function-name UpdateUserFunction \
-            --zip-file fileb://updateUserFunction.zip \
+            --function-name manageUsersFunction \
+            --zip-file fileb://manageUsersFunction.zip \
             --region $AWS_REGION
 
-      # Deploy DeleteUser Lambda Function
-      - name: Deploy DeleteUserFunction
+      # Deploy SendEmail Lambda Function
+      - name: Deploy sendEmailFunction
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -76,13 +76,13 @@ jobs:
         run: |
           cd backend
           cd functions
-          mkdir deleteUserPackage
-          cp deleteUser.js extractIds.js deleteUserPackage/
-          cd deleteUserPackage
-          zip -r deleteUserFunction.zip .
+          mkdir sendEmailPackage
+          cp sendEmail.js sendEmailPackage/
+          cd sendEmailPackage
+          zip -r sendEmailFunction.zip .
           aws lambda update-function-code \
-            --function-name DeleteUserFunction \
-            --zip-file fileb://deleteUserFunction.zip \
+            --function-name sendEmailFunction \
+            --zip-file fileb://sendEmailFunction.zip \
             --region $AWS_REGION
 
       # Deploy Frontend (S3 + CloudFront)
