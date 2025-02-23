@@ -3,7 +3,7 @@ import { CognitoIdentityProviderClient, ConfirmSignUpCommand } from "@aws-sdk/cl
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { config } from '../congif';
+import { config } from '../config';
 
 const Verify = () => {
   const [username, setUsername] = useState('');
