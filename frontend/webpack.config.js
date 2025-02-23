@@ -5,6 +5,10 @@ const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 module.exports = {
   mode: 'production',
@@ -72,5 +76,8 @@ module.exports = {
         filename: 'index.html',        
         inject: true,
     }),
+    new webpack.DefinePlugin({
+        "process.env": JSON.stringify(process.env)
+    })
   ],
 };
