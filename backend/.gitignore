@@ -8,16 +8,16 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
+.build/
 develop-eggs/
-dist/
+.dist/
 downloads/
 eggs/
 .eggs/
-lib/
+.lib/
 lib64/
-parts/
-sdist/
+.parts/
+.sdist/
 var/
 wheels/
 share/python-wheels/
@@ -25,9 +25,6 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-# But do NOT ignore Jest’s build files
-!node_modules/jest-cli/build/
-!node_modules/jest-util/build/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
