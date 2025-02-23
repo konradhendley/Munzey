@@ -94,6 +94,11 @@ jobs:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
         run: |
           cd frontend
+
+          echo "REACT_APP_USER_POOL_ID=${{ secrets.REACT_APP_USER_POOL_ID }}" >> .env
+          echo "REACT_APP_CLIENT_ID=${{ secrets.REACT_APP_CLIENT_ID }}" >> .env
+          echo "REACT_APP_REGION=${{ secrets.REACT_APP_REGION }}" >> .env
+
           npm install
           npm run build
           aws s3 sync ./build s3://$S3_BUCKET --delete
