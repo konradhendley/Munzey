@@ -39,10 +39,10 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
           cd backend
-          cd functions
-          mkdir manageExpensesPackage
-          cp manageExpenses.js extractIds.js manageExpensesPackage/
-          cd manageExpensesPackage
+          mkdir -p functions/manageExpensesPackage
+          cp functions/manageExpenses.js functions/extractIds.js functions/manageExpensesPackage/
+          cp -r node_modules functions/manageExpensesPackage/
+          cd functions/manageExpensesPackage
           zip -r manageExpensesFunction.zip .
           aws lambda update-function-code \
             --function-name manageExpensesFunction \
@@ -57,10 +57,10 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
           cd backend
-          cd functions
-          mkdir manageUsersPackage
-          cp manageUsers.js extractIds.js manageUsersPackage/
-          cd manageUsersPackage
+          mkdir -p functions/manageUsersPackage
+          cp functions/manageUsers.js functions/extractIds.js functions/manageUsersPackage/
+          cp -r node_modules functions/manageUsersPackage/
+          cd functions/manageUsersPackage
           zip -r manageUsersFunction.zip .
           aws lambda update-function-code \
             --function-name manageUsersFunction \
