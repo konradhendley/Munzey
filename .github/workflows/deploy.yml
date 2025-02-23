@@ -40,7 +40,7 @@ jobs:
         run: |
           cd backend
           mkdir -p functions/manageExpensesPackage
-          cp functions/manageExpenses.js functions/extractIds.js manageExpensesPackage/
+          cp functions/manageExpenses.js functions/extractIds.js functions/manageExpensesPackage/
           cp -r node_modules functions/manageExpensesPackage/
           cd functions/manageExpensesPackage
           zip -r manageExpensesFunction.zip .
@@ -58,7 +58,7 @@ jobs:
         run: |
           cd backend
           mkdir -p functions/manageUsersPackage
-          cp functions/manageUsers.js functions/extractIds.js manageUsersPackage/
+          cp functions/manageUsers.js functions/extractIds.js functions/manageUsersPackage/
           cp -r node_modules functions/manageUsersPackage/
           cd functions/manageUsersPackage
           zip -r manageUsersFunction.zip .
