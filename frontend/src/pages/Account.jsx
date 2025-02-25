@@ -55,8 +55,11 @@ const Account = () => {
     }));
   };
 
-  const handleSave = async () => {
+  const handleSave = async (e) => {
     try {
+      if (e && e.preventDefault) {
+        e.preventDefault();
+      }
       const response = await fetch('https://fb8a21npal.execute-api.us-east-1.amazonaws.com/dev/user', {
         method: 'PATCH',
         headers: {

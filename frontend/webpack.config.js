@@ -5,6 +5,7 @@ const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 
@@ -25,6 +26,8 @@ module.exports = {
   devServer: {
     static: path.join(__dirname, 'public'),
     port: 3000, 
+    liveReload: false,
+    hot: true,
   },
   module: {
     rules: [
@@ -78,6 +81,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
         "process.env": JSON.stringify(process.env)
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin(),
   ],
 };

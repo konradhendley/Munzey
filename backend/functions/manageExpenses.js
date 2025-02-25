@@ -64,8 +64,14 @@ const updateExpense = async (event) => {
         // Extract userId and expenseId using the utility function
         const { userId, expenseId } = extractIds(event);
 
-        // Parse the JSON body to get the fields to update
-        const { description, amount, date, category } = JSON.parse(event.body);
+                // Parse the JSON body to get the fields to update
+                const rawBody = event.event?.body; // Adjusted for the nested structure
+
+                if (!rawBody) {
+                    throw new Error("Body is missing from event");
+                }
+        
+                const { description, amount, date, category } = JSON.parse(rawBody);
 
         // Initialize variables for the update expression
         let updateExpression = 'SET ';
@@ -264,4 +270,39 @@ module.exports = {
     deleteExpense,
     getExpense,
     getExpenses,
+    handler: async (event) => {
+        try {
+            const httpMethod = event.requestContext.http.method;
+            const path = event.requestContext.http.path;
+            const userId = event.requestContext?.authorizer?.jwt?.claims?.sub
+
+            // Check if pathParameters exists and is not empty
+            const expenseId = event.pathParameters && Object.keys(event.pathParameters).length > 0 
+            ? event.pathParameters.id 
+            : null;
+
+            if (httpMethod === "POST" && path.includes("expense")) {
+                return await addExpense(event);
+            } else if (httpMethod === "PATCH" && path.includes("expense")) {
+                return await updateExpense({event, expenseId: event.pathParameters.id, userId});
+            } else if (httpMethod === "DELETE" && path.includes("expense")) {
+                return await deleteExpense({event, expenseId: event.pathParameters.id, userId});
+            } else if (httpMethod === "GET" && path.includes("expense") && event.pathParameters) {
+                return await getExpense({ event, expenseId: event.pathParameters.id, userId });
+            } else if (httpMethod === "GET" && path.includes("expenses")) {
+                return await getExpenses(event);
+            }
+
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ message: "Invalid request" }),
+            };
+        } catch (error) {
+            console.error("Error processing request:", error);
+            return {
+                statusCode: 500,
+                body: JSON.stringify({ message: "Internal Server Error", error }),
+            };
+        }
+    }
 };
