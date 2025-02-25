@@ -1,17 +1,17 @@
+const AWS = require('aws-sdk');
 const { CognitoIdentityProviderClient, AdminUpdateUserAttributesCommand, AdminGetUserCommand } = require('@aws-sdk/client-cognito-identity-provider');
 const cognito = new AWS.CognitoIdentityServiceProvider();
 const { extractUsername } = require('./extractIds');
-const AWS = require('aws-sdk');
-
 
 // Initialize Cognito Client
 const client = new CognitoIdentityProviderClient({ region: 'us-east-1' });
 
-
 //////////////////////////////Update Users//////////////////////////////
 const updateUser = async (event) => {
   const username = extractUsername(event);
-  const attributes = JSON.parse(event.body);
+  console.log("event: ", event)
+  const rawAttributes = event.event?.body;
+  const attributes = JSON.parse(rawAttributes);
   
   try {
     // Validate attributes
@@ -139,4 +139,32 @@ module.exports = {
    updateUser,
    deleteUser,
    getUser,
+   handler: async (event) => {
+    try {
+        const httpMethod = event.requestContext.http.method;
+        const path = event.requestContext.http.path;
+        const userId = event.requestContext?.authorizer?.jwt?.claims?.sub
+        const username = event.requestContext?.authorizer?.jwt?.claims?.username;
+        console.log("event", event);
+
+       if (httpMethod === "PATCH" && path.includes("user")) {
+            return await updateUser({event, userId, username});
+        } else if (httpMethod === "DELETE" && path.includes("user")) {
+            return await deleteUser({event,  userId});
+        } else if (httpMethod === "GET" && path.includes("user")) {
+            return await getUser({ event, userId, username });
+        }
+
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ message: "Invalid request" }),
+        };
+    } catch (error) {
+        console.error("Error processing request:", error);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ message: "Internal Server Error", error }),
+        };
+    }
+}
 };
