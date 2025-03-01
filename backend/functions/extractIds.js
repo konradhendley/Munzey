@@ -1,6 +1,6 @@
 //Only extract the user id
 exports.extractUserId = (event) => {
-    const userId = event.userId;
+    const userId = event.requestContext?.authorizer?.jwt?.claims?.sub;
     if (!userId) {
         throw new Error('Unauthorized: Missing userId');
     }
@@ -18,8 +18,8 @@ exports.extractUsername = (event) => {
 
 //extract both user and expense id
 exports.extractIds = (event) => {
-    const userId = event.userId || event.requestContext?.authorizer?.jwt?.claims?.sub;
-    const expenseId = event.expenseId || event.pathParameters.id;
+    const userId = event.requestContext?.authorizer?.jwt?.claims?.sub;
+    const expenseId = event.pathParameters.id;
     console.log("the event for extractIDs: ", event);
 
     if (!expenseId) {
