@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -7,6 +7,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 const Account = () => {
   const [userData, setUserData] = useState(null);
   const location = useLocation();
+  const navigate = useNavigate();
   const [error, setError] = useState('');
   const [isEditing, setIsEditing] = useState(false); // State to toggle edit mode
   const [formData, setFormData] = useState({
@@ -134,6 +135,14 @@ const Account = () => {
         <Header />
           <div className='form-container'>
             <form className='generic-form'>
+            {isStandalone && !isEditing && (
+                <div 
+                  className="back-button-container">
+                  <button 
+                    className="back-button" onClick={(e) => {e.preventDefault(); navigate(-1);}}> ← Back
+                  </button>
+                </div>
+              )}
               <h2>Account Details</h2>
               <div>
                 <label>Name:</label>

@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from './Footer';
 import LoadingSpinner from './LoadingSpinner';
+import { fetchExpenses } from '../utils/fetchExpenses';
 
 // Register necessary components for Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -12,7 +13,10 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const Chart = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState(() => {
+    const storedExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
+      return storedExpenses;
+    });
   const [error, setError] = useState(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -23,31 +27,23 @@ const Chart = () => {
   const isStandalone = location.pathname === '/chart';
 
   useEffect(() => {
-    const fetchExpenses = async () => {
-      const token = localStorage.getItem('accessToken');
-      try {
-        const response = await fetch('https://fb8a21npal.execute-api.us-east-1.amazonaws.com/dev/expenses', {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!response.ok) {
-          throw new Error('Failed to fetch expenses');
+    if (expenses.length === 0) {
+      const loadExpenses = async () => {
+        setLoading(true);
+        try {
+          const data = await fetchExpenses();
+          setExpenses(data);
+        } catch (err) {
+          console.error('Error loading expenses:', err);
+          setError(err.message);
+        } finally {
+          setLoading(false);
         }
+      };
+      loadExpenses();
+    }
+  }, [expenses]);
 
-        const data = await response.json();
-        setExpenses(data);
-      } catch (err) {
-        console.error('Error fetching expenses:', err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchExpenses();
-  }, []);
 
   useEffect(() => {
     const now = new Date();
@@ -124,7 +120,9 @@ const Chart = () => {
     maintainAspectRatio: false,
     backgroundColor: 'black',
   };
-
+    if (loading) {
+      return <LoadingSpinner standalone={isStandalone} />;
+    }
   /* removing this feature for now
   const handleClearFilters = () => {
     setStartDate('');
@@ -141,7 +139,7 @@ const Chart = () => {
       <div className={location.pathname === '/chart' ? 'content-container' : ''}>
         {location.pathname === '/chart' && <Header />}
         
-        <div className="chart-container">
+        <div className="generic-container">
           {error && <p className="error">{error}</p>}
 
           {isStandalone && (
@@ -151,38 +149,40 @@ const Chart = () => {
         )}
           <h2>Chart</h2>
           {/* Filter Controls */}
-          <div className="filter-controls">
-            <label>
-              Start Date:
-              <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-            </label>
-            <label>
-              End Date:
-              <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-            </label>
-            <label>
-              Category:
-              <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                <option value="">All</option>
-                {[...new Set((expenses || []).map((exp) => exp.category))].map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
-                  </option>
-                ))}
-              </select>
-            </label>
-            {/*<button onClick={handleClearFilters}>Clear Filters</button>*/}
-          </div>
+          {location.pathname === '/chart' && (
+        <div className="filter-controls">
+          <label>
+            Start Date:
+            <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+          </label>
+          <label>
+            End Date:
+            <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+          </label>
+          <label>
+            Category:
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+              <option value="">All</option>
+              {[...new Set((expenses || []).map((exp) => exp.category))].map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+          </label>
+          {/*<button onClick={handleClearFilters}>Clear Filters</button>*/}
+        </div>
+      )}
 
           {/* Chart Display */}
           <div className="chart-wrapper">
 
-          {loading ? (
-            <p>Loading chart...</p>
-          ) : error ? (
+          { error ? (
             <p className='error'>{error}</p>
           ) : (
+            <div className="bar-chart">
             <Bar data={data} options={options} />
+            </div>
           )}
            
           </div>

@@ -64,8 +64,8 @@ const updateExpense = async (event) => {
         // Extract userId and expenseId using the utility function
         const { userId, expenseId } = extractIds(event);
 
-                // Parse the JSON body to get the fields to update
-                const rawBody = event.event?.body; // Adjusted for the nested structure
+                // Parse the JSON body to get the fields to update. Check for both nested event and regular
+                const rawBody = event.event?.body || event.body;
 
                 if (!rawBody) {
                     throw new Error("Body is missing from event");

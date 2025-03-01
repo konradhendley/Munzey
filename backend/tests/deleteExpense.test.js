@@ -45,9 +45,9 @@ describe('deleteExpense handler', () => {
             },
             pathParameters: {
                 id: '456'
-            }
+            },
         };
-
+        console.log("the event: ", event);
         const response = await deleteExpense(event);
 
         expect(response.statusCode).toBe(200);

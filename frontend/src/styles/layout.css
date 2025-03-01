@@ -35,4 +35,22 @@
     text-decoration: underline;
   }
 
-  
+  .fade-message {
+    font-size: 1.6rem;
+    min-height: 50px;
+    color: black;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 20px 0;
+    transition: opacity 2s ease-in-out;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0;
+}
