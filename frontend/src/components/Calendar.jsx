@@ -5,38 +5,43 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import LoadingSpinner from './LoadingSpinner';
+import { fetchExpenses } from '../utils/fetchExpenses';
 
 const Calendar = () => {
   const location = useLocation();
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState(() => {
+  const storedExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
+    return storedExpenses;
+  });
   const [selectedDate, setSelectedDate] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(expenses.length === 0);
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
   const isStandalone = location.pathname === '/calendar';
 
   useEffect(() => {
-    const fetchExpenses = async () => {
-      const token = localStorage.getItem('accessToken');
-      try {
-        const response = await fetch('https://fb8a21npal.execute-api.us-east-1.amazonaws.com/dev/expenses', {
-          method: 'GET',
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        if (!response.ok) {
-          throw new Error('Failed to fetch expenses');
+    if (expenses.length === 0) {
+      const loadExpenses = async () => {
+        setLoading(true);
+        try {
+          const data = await fetchExpenses();
+          setExpenses(data);
+        } catch (err) {
+          console.error('Error loading expenses:', err);
+          setError(err.message);
+        } finally {
+          setLoading(false);
         }
-        const data = await response.json();
-        setExpenses(data);
-      } catch (err) {
-        console.error('Error fetching expenses:', err);
-        setError(err.message);
-      }
-      setLoading(false);
-    };
-    fetchExpenses();
-  }, []);
+      };
+      loadExpenses();
+    }
+  }, [expenses]);
+
+  if (loading) {
+    return <LoadingSpinner standalone={isStandalone} />;
+  }
 
   const handleDateClick = (info) => {
     setSelectedDate(info.dateStr);
@@ -60,15 +65,13 @@ const Calendar = () => {
     <div className={isStandalone ? 'wrapper' : ''}>
       <div className={isStandalone ? 'content-container' : ''}>
         {isStandalone && <Header />}
-        <div className='calendar-container'>
+        <div className='generic-container'>
         {isStandalone && (
           <div className="back-button-container">
           <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
         </div>
         )}
-          {loading ? (
-            <p>Loading calendar...</p>
-          ) : error ? (
+          {error ? (
             <p className='error'>{error}</p>
           ) : (
             <FullCalendar
@@ -77,7 +80,6 @@ const Calendar = () => {
               events={events}
               dateClick={handleDateClick}
             />
-            
           )}
           {selectedDate && (
             <div className='details-container'>

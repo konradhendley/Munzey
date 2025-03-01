@@ -1,7 +1,8 @@
-.chart-container {
+/*this is the container form for all of the dashboard features. Storing here for now but will most likely be moved later*/
+.generic-container {
   width: 100%;
-  max-width: 600px;
-  max-height: 520px;
+  max-width: 550px;
+  max-height: 560px;
   margin: 20px auto;
   padding: 20px;
   border: none;
@@ -90,4 +91,8 @@
 
 .filter-controls button:hover {
   background-color: #b02a37;
+}
+
+.bar-chart {
+  height: 275px;
 }

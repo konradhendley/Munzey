@@ -17,8 +17,15 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
-    max-height: fit-content;
+    max-height: 550px;
+    overflow: hidden;
   }
+  
+.dashboard-wrapper {
+  flex-grow: 1;
+  max-height: 100%;
+  overflow: auto;
+}
   
   .dashboard-section a {
     color: #1db954;

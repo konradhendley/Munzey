@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+const messages = [
+    "Track your expenses with ease.",
+    "Take control of your finances.",
+    "Plan your budget.",
+    "Visualize your spending habits."
+];
+
 const Home = () => {
-    const isAuthenticated = localStorage.getItem("idToken") !== null; // Check if user is signed in
+    const isAuthenticated = localStorage.getItem("idToken") !== null;
+    const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+    const [fade, setFade] = useState(true);
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+        const interval = setInterval(() => {
+            setFade(false);
+            setTimeout(() => {
+                setCurrentMessageIndex((prevIndex) => (prevIndex + 1) % messages.length);
+                setFade(true);
+            }, 3000);
+        }, 5000);
+
+        return () => clearInterval(interval);
+            }
+        }, [isAuthenticated]);
 
     return (
         <div className="wrapper">
@@ -12,6 +35,10 @@ const Home = () => {
                 <Header />
                 <h2>Welcome to Munzey</h2>
                 {!isAuthenticated && (
+                    <div>
+                    <div className={`fade-message ${fade ? "fade-in" : "fade-out"}`}>
+                    {messages[currentMessageIndex]}
+                </div>
                     <div className="button-container">
                         <Link to="/login">
                             <button className="custom-button">Login</button>
@@ -19,6 +46,7 @@ const Home = () => {
                         <Link to="/signup">
                             <button className="custom-button">Signup</button>
                         </Link>
+                    </div>
                     </div>
                 )}
                 <Footer />
