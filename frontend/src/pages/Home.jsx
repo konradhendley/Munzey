@@ -35,7 +35,7 @@ const Home = () => {
                 <Header />
                 <h1>Welcome to Munzey</h1>
                 <div>
-                    Click<a href="/MunzeyDemo.mp4" target="_blank" rel="noopener noreferrer"> here </a> to watch a demo
+                    Click<a href="https://munzey-demo-videos.s3.us-east-1.amazonaws.com/Munzey+Demo.mp4" target="_blank" rel="noopener noreferrer"> here </a> to watch a demo
                 </div>
                 {!isAuthenticated && (
                     <div>
