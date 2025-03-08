@@ -24,7 +24,10 @@ module.exports = {
     },
   },
   devServer: {
-    static: path.join(__dirname, 'public'),
+    historyApiFallback: true,
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
     port: 3000, 
     liveReload: false,
     hot: true,

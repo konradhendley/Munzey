@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from './Footer';
 import LoadingSpinner from './LoadingSpinner';
@@ -27,22 +27,20 @@ const Chart = () => {
   const isStandalone = location.pathname === '/chart';
 
   useEffect(() => {
-    if (expenses.length === 0) {
-      const loadExpenses = async () => {
-        setLoading(true);
-        try {
-          const data = await fetchExpenses();
-          setExpenses(data);
-        } catch (err) {
-          console.error('Error loading expenses:', err);
-          setError(err.message);
-        } finally {
-          setLoading(false);
-        }
-      };
-      loadExpenses();
-    }
-  }, [expenses]);
+    const loadExpenses = async () => {
+      setLoading(true);
+      try {
+        const data = await fetchExpenses();
+        setExpenses(data);
+      } catch (err) {
+        console.error('Error loading expenses:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadExpenses();
+  }, []);
 
 
   useEffect(() => {
@@ -129,16 +127,17 @@ const Chart = () => {
     setEndDate('');
     setCategory('');
   };*/
-
-  if (expenses.length === 0 && !error) {
-    return <LoadingSpinner standalone={isStandalone} />;
-  }
-
   return (
     <div className={location.pathname === '/chart' ? 'wrapper' : ''}>
       <div className={location.pathname === '/chart' ? 'content-container' : ''}>
         {location.pathname === '/chart' && <Header />}
-        
+        {loading ? (
+            <div className="loading-container">
+              <LoadingSpinner standalone={false}/> 
+            </div>
+          ) : expenses.length === 0 ? (
+            <p className="empty-message">No expenses found. <Link to="/createExpense">Create an expense</Link></p>
+          ) : (
         <div className="generic-container">
           {error && <p className="error">{error}</p>}
 
@@ -187,8 +186,8 @@ const Chart = () => {
            
           </div>
         </div>
-
-        {location.pathname === '/chart' && <Footer />}
+        )}
+        {isStandalone && <Footer />}
       </div>
     </div>
   );

@@ -53,7 +53,7 @@ describe('updateExpense handler', () => {
                 }
             },
             pathParameters: {
-                id: '456'
+                expenseId: '456'
             },
             body: JSON.stringify({
                 amount: 50,

@@ -113,8 +113,8 @@ const Signup = () => {
       <p>
         Already have an account? <Link to="/login">Log in</Link>
       </p>
-          <Footer/>
         </div>
+        <Footer/>
     </div>
     </div>
   );

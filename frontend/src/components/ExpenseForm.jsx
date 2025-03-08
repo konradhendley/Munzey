@@ -13,7 +13,7 @@ const ExpenseForm = () => {
 
   const handleSubmit = async (e, redirect = false) => {
     e.preventDefault();
-    const token = localStorage.getItem('accessToken'); // Fetch the token from localStorage
+    const token = localStorage.getItem('accessToken');
 
     try {
       const response = await fetch('https://fb8a21npal.execute-api.us-east-1.amazonaws.com/dev/expense', {
@@ -37,7 +37,6 @@ const ExpenseForm = () => {
       setSuccess(true);
       setError('');
       if (redirect) {
-        // Redirect back to the previous page
         window.history.back();
       } else {
         // Clear the form for the next expense
@@ -106,7 +105,7 @@ const ExpenseForm = () => {
             required
           />
           <div className="button-group">
-            <button type="button" onClick={(e) => handleSubmit(e, true)}> Save and exit </button>
+            <button type="button" onClick={(e) => handleSubmit(e, true)}> Save and Exit </button>
             <button type="button" onClick={(e) => handleSubmit(e, false)}>  Save and Add Another </button>
             <button type="button" onClick={handleCancel}> Cancel </button>
           </div>

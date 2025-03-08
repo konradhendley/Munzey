@@ -16,22 +16,20 @@ const ExpenseList = ({ user, showHeader = true }) => {
   const isStandalone = location.pathname === '/expenses';
 
   useEffect(() => {
-    if (expenses.length === 0) {
-      const loadExpenses = async () => {
-        setLoading(true);
-        try {
-          const data = await fetchExpenses();
-          setExpenses(data);
-        } catch (err) {
-          console.error('Error loading expenses:', err);
-          setError(err.message);
-        } finally {
-          setLoading(false);
-        }
-      };
-      loadExpenses();
-    }
-  },);
+    const loadExpenses = async () => {
+      setLoading(true);
+      try {
+        const data = await fetchExpenses();
+        setExpenses(data);
+      } catch (err) {
+        console.error('Error loading expenses:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadExpenses();
+  }, []);
 
   const handleSort = (key) => {
     let direction = 'ascending';
@@ -57,10 +55,6 @@ const ExpenseList = ({ user, showHeader = true }) => {
     navigate(`/editExpense/${expenseId}`, { state: { expenseId } });
   };
 
-  if (loading) {
-    return <LoadingSpinner standalone={isStandalone} />;
-  }
-
   //if (expenses.length === 0 && !error) {
     //return <p>Create an expense.</p>;
   //}
@@ -69,7 +63,13 @@ const ExpenseList = ({ user, showHeader = true }) => {
     <div className={isStandalone ? 'wrapper' : ''}>
       <div className={isStandalone ? 'content-container' : ''}>
         {isStandalone && <Header />}
-
+        {loading ? (
+            <div className="loading-container">
+              <LoadingSpinner standalone={false}/> 
+            </div>
+          ) : expenses.length === 0 ? (
+            <p className="empty-message">No expenses found. <Link to="/createExpense">Create an expense</Link></p>
+          ) : (
         <div className="generic-container">
           <div className="expense-list">
             {isStandalone && (
@@ -121,6 +121,7 @@ const ExpenseList = ({ user, showHeader = true }) => {
             )}
           </div>
         </div>
+        )}
         {isStandalone && <Footer />}
       </div>
     </div>

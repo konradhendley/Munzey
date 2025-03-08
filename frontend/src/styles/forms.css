@@ -33,6 +33,8 @@ form {
   width: 25%;
   max-width: 600px; 
   min-width: 100px;
+  max-height: 600px; 
+  overflow-y: auto;
   padding: 20px;
   background: rgba(0, 0, 0, 0.8);
   border-radius: 12px;
@@ -166,4 +168,20 @@ width: 50%;
 margin: 0 auto;
 cursor: pointer;
 transition: all 0.3s ease-in-out;
+}
+
+.code-input-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.code-input {
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
 }

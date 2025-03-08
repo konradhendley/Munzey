@@ -71,10 +71,10 @@ function Login() {
             <label>Show Password</label>
           </div>
             <button type="submit">Login</button>
-            <p>
+          </form>
+          <p>
               Don't have an account? <Link to="/signup">Sign Up</Link>
             </p>
-          </form>
         </div>
         <Footer />
       </div>
