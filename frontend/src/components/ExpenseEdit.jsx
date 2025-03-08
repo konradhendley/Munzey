@@ -131,11 +131,10 @@ const ExpenseEdit = () => {
       <div className='content-container'>
       <Header />
       <div className='form-container'>
+      {success && <p className="success">{success}</p>}
+      {error && <p className="error">{error}</p>}
       <form className="generic-form" onSubmit={handleSubmit}>
         <h2>Edit Expense</h2>
-        {success && <p className="success">{success}</p>}
-        {error && <p className="error">{error}</p>}
-        
           <label>Description:</label>
           <input
             type="text"

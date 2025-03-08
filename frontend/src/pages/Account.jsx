@@ -164,10 +164,10 @@ const Account = () => {
                   readOnly={!isEditing}
                 />
               </div>
-              <div className="checkbox-container">
+              {!isEditing && <div className="checkbox-container">
                 <label>Email Verified:</label>
                 <input type="checkbox" checked={email_verified} disabled />
-              </div>
+                </div>}
               <div>
                 <label>Phone Number:</label>
                 <input
@@ -178,12 +178,10 @@ const Account = () => {
                   readOnly={!isEditing}
                 />
               </div>
-              <div className="checkbox-container">
+              {!isEditing && <div className="checkbox-container">
                 <label>Phone Verified:</label>
                 <input type="checkbox" checked={phone_number_verified} disabled />
-              </div>
-         
-  
+              </div>}
           {isEditing ? (
             <>
               <button onClick={handleSave}>Save</button>

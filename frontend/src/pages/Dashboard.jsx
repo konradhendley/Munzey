@@ -54,7 +54,7 @@ const Dashboard = () => {
               <LoadingSpinner standalone={false}/> 
             </div>
           ) : expenses.length === 0 ? (
-            <p className="empty-message">No expenses found. <Link to="/expenses">Create an expense</Link></p>
+            <p className="empty-message">No expenses found. <Link to="/createExpense">Create an expense</Link></p>
           ) : (
             <div className="dashboard-grid">
               {/* Left - Chart */}

@@ -44,7 +44,7 @@ describe('deleteExpense handler', () => {
                 }
             },
             pathParameters: {
-                id: '456'
+                expenseId: '456'
             },
         };
         const response = await deleteExpense(event);
@@ -77,7 +77,7 @@ describe('deleteExpense handler', () => {
                 }
             },
             pathParameters: {
-                id: '456'
+                expenseId: '456'
             }
         };
 
@@ -104,7 +104,7 @@ describe('deleteExpense handler', () => {
                 }
             },
             pathParameters: {
-                id: '456'
+                expenseId: '456'
             }
         };
 
