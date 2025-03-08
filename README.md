@@ -7,5 +7,4 @@ Current Status
 
 Next Steps
 
-	•	Add Cypress testing
-	•	Improve UI/UX for some features
+	•	Begin planning for V2 of the project

@@ -170,6 +170,7 @@ cursor: pointer;
 transition: all 0.3s ease-in-out;
 }
 
+/*syling for the verification code entry*/
 .code-input-container {
   display: flex;
   gap: 10px;
