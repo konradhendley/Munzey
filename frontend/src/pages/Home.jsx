@@ -33,7 +33,10 @@ const Home = () => {
         <div className="wrapper">
             <div className="content-container">
                 <Header />
-                <h2>Welcome to Munzey</h2>
+                <h1>Welcome to Munzey</h1>
+                <div>
+                    Click<a href="https://munzey-demo-videos.s3.us-east-1.amazonaws.com/Munzey+Demo.mp4" target="_blank" rel="noopener noreferrer"> here </a> to watch a demo
+                </div>
                 {!isAuthenticated && (
                     <div>
                     <div className={`fade-message ${fade ? "fade-in" : "fade-out"}`}>
