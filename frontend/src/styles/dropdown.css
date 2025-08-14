@@ -1,5 +1,5 @@
 .dropdown-container {
-  position: right;
+  position: right; /* "right" isn't valid — use relative for positioning menu */
   padding: 5px;
 }
 
@@ -17,16 +17,17 @@
   position: absolute;
   top: 100%;
   right: 0;
-  background: black;
+  background: #1f2937;
   padding: 10px;
   border-radius: 8px;
+  border-top-right-radius: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   width: 150px;
   text-align: left;
 }
 
-/* Dropdown links & buttons */
+/* Dropdown links & buttons (works for React Router <Link> too) */
 .dropdown-menu a,
 .dropdown-menu button {
   display: block;
@@ -39,9 +40,14 @@
   text-align: left;
   cursor: pointer;
   border-radius: 5px;
+  font: inherit;
+  line-height: inherit;
 }
 
-.dropdown-menu a:hover,
-.dropdown-menu button:hover {
+.dropdown-menu a:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu button:hover {
+  background-color: rgb(253, 2, 2);
 }

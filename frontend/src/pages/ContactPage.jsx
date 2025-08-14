@@ -47,7 +47,7 @@ const Contact = () => {
           <div className='generic-form'>
             <form onSubmit={handleSubmit}>
               <label>
-                Name (optional):
+                Name (optional)
                 <input
                   type="text"
                   value={name}
@@ -56,7 +56,7 @@ const Contact = () => {
                 />
               </label>
               <label>
-                Email (optional):
+                Email (optional)
                 <input
                   type="email"
                   value={email}
@@ -65,7 +65,7 @@ const Contact = () => {
                 />
               </label>
               <label>
-                Message:
+                Message
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}

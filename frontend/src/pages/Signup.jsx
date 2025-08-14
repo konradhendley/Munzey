@@ -62,28 +62,28 @@ const Signup = () => {
       {message && <p className="success">{message}</p>}
       <form className='generic-form' onSubmit={handleSubmit}>
       <h2>Sign Up</h2>
-        <label>Full Name:</label>
+        <label>Full Name</label>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
-        <label>Username:</label>
+        <label>Username</label>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-        <label>Email:</label>
+        <label>Email</label>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <label>Phone Number:</label>
+        <label>Phone Number</label>
         <input
           type="tel"
           value={phoneNumber}
@@ -91,7 +91,7 @@ const Signup = () => {
           placeholder="+1234567890"
           required
         />
-        <label>Password:</label>
+        <label>Password</label>
           <input
             type={showPassword ? "text" : "password"}
             value={password}
