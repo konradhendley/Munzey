@@ -43,7 +43,7 @@ const Dashboard = () => {
 
   return (
     <div className='wrapper'>    
-      <div className='content-container'>
+      <div className='content-container dashboard-page'>
         <Header />
         <div className="dashboard-container">
           <h1 className="dashboard-header">{greeting}, {username}!</h1>
@@ -77,7 +77,7 @@ const Dashboard = () => {
               <div className="dashboard-section">
                 <h2>Calendar</h2> <Link to="/calendar">View Calendar</Link>
                 <div className="dashboard-wrapper">
-                  <Calendar /> {/* Show recurring expenses & income */}
+                  <Calendar />
                 </div>
               </div>
             </div>

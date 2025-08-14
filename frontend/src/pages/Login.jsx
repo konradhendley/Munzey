@@ -48,14 +48,14 @@ function Login() {
           <form className='generic-form' onSubmit={handleLogin}>
             <h2>Login</h2>
             {error && <p style={{ color: 'red' }}>{error}</p>}
-            <label>Username:</label>
+            <label>Username</label>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
-            <label>Password:</label>
+            <label>Password</label>
             <input
               type={showPassword ? "text" : "password"}
               value={password}
