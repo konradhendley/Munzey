@@ -25,22 +25,22 @@ const Header = () => {
         )}
       </div>
       {token && (
-        <div className="dropdown-container">
-          <button
-            className="dropdown-button"
-            onClick={() => setShowDropdown(!showDropdown)}
-          >
-            ☰
-          </button>
-          {showDropdown && (
-            <div className="dropdown-menu">
-              <Link to="/account">My Account</Link>
-              <Link to="/settings">Settings</Link>
-              <button onClick={handleLogout}>Log Out</button>
-            </div>
-          )}
+    <>
+      <button
+        className="dropdown-button"
+        onClick={() => setShowDropdown(!showDropdown)}
+      >
+        ☰
+      </button>
+      {showDropdown && (
+        <div className="dropdown-menu">
+          <Link to="/account">My Account</Link>
+          <Link to="/settings">Settings</Link>
+          <button onClick={handleLogout}>Log Out</button>
         </div>
       )}
+    </>
+  )}
     </header>
   );
 };

@@ -73,8 +73,8 @@ const Calendar = () => {
 
   return (
     <div className={isStandalone ? 'wrapper' : ''}>
-      <div className={isStandalone ? 'content-container' : ''}>
-        {isStandalone && <Header />}
+       {isStandalone && <Header />}
+      <div className={isStandalone ? 'content-container' : ''}>  
         {loading ? (
           <div className="loading-container">
             <LoadingSpinner standalone={false} /> 
@@ -116,8 +116,8 @@ const Calendar = () => {
                 </ul>
               </div>
             )}   
-        {isStandalone && <Footer />}
       </div>
+      {isStandalone && <Footer />}
     </div>
   );
 };

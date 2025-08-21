@@ -128,8 +128,8 @@ const ExpenseEdit = () => {
 
   return (
     <div className='wrapper'>
+       <Header />
       <div className='content-container'>
-      <Header />
       <div className='form-container'>
       {success && <p className="success">{success}</p>}
       {error && <p className="error">{error}</p>}
@@ -179,9 +179,9 @@ const ExpenseEdit = () => {
             <button type="button"onClick={handleCancel} > Cancel </button>
           </div>
         </form>
-      </div>
-      <Footer/>
+      </div>    
     </div>
+    <Footer/>
   </div>
   );
 };

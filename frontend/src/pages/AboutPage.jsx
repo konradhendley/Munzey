@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 const About = () => {
   return (
     <div className='wrapper'>
-      <div className='content-container'>
-        <Header />
+       <Header />
+      <div className='content-container'>   
         <div className='generic-text'>
           <p>
             Munzey is an expense tracking app created by <a href='https://www.linkedin.com/in/konradhendley/'>Konrad Hendley</a> in 2025. 
@@ -17,9 +17,9 @@ const About = () => {
           <p>
             If you have any questions or would like to leave feedback, please feel free to <Link to="/contact">contact us</Link>!
           </p>
-        </div>
-        <Footer />
+        </div>  
       </div>
+      <Footer />
     </div>
   );
 };

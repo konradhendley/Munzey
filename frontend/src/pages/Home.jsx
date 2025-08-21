@@ -31,8 +31,9 @@ const Home = () => {
 
     return (
         <div className="wrapper">
+            <Header />
             <div className="content-container">
-                <Header />
+                
                 <h1>Welcome to Munzey</h1>
                 <div>
                     Click<a href="https://munzey-demo-videos.s3.us-east-1.amazonaws.com/Munzey+Demo.mp4" target="_blank" rel="noopener noreferrer"> here </a> to watch a demo
@@ -51,9 +52,9 @@ const Home = () => {
                         </Link>
                     </div>
                     </div>
-                )}
-                <Footer />
-            </div>
+                )}      
+                </div>
+            <Footer />
         </div>
     );
 };
