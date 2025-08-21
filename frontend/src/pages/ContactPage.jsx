@@ -35,8 +35,9 @@ const Contact = () => {
 
   return (
     <div className='wrapper'>
+       <Header />
       <div className='content-container'>
-        <Header />
+       
          
           <div className='form-container'>
           <p className='generic-text'>
@@ -77,8 +78,9 @@ const Contact = () => {
             </form>
           </div>
           </div>
-        <Footer />
+        
       </div>
+      <Footer />
     </div>
   );
 };

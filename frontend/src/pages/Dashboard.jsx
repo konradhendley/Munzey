@@ -42,9 +42,9 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className='wrapper'>    
-      <div className='content-container dashboard-page'>
-        <Header />
+    <div className='wrapper'>
+       <Header />    
+      <div className='content-container'>
         <div className="dashboard-container">
           <h1 className="dashboard-header">{greeting}, {username}!</h1>
           <p className="dashboard-header">Track and visualize your finances in one place.</p>
@@ -82,9 +82,9 @@ const Dashboard = () => {
               </div>
             </div>
           )}
-        </div>
-        <Footer />
+        </div> 
       </div>
+      <Footer />
     </div>
   );
 };

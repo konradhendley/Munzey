@@ -42,8 +42,9 @@ function Login() {
 
   return (
     <div className='wrapper'>
+      <Header />
       <div className='content-container'>
-        <Header />
+       
         <div className='form-container'>
           <form className='generic-form' onSubmit={handleLogin}>
             <h2>Login</h2>
@@ -75,9 +76,9 @@ function Login() {
           <p>
               Don't have an account? <Link to="/signup">Sign Up</Link>
             </p>
-        </div>
-        <Footer />
+        </div>        
       </div>
+      <Footer />
     </div>
   );
 }

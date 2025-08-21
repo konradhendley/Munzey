@@ -57,8 +57,8 @@ const ExpenseForm = () => {
 
   return (
     <div className='wrapper'>
-      <div className='content-container'>
       <Header />
+      <div className='content-container'>
       <div className="form-container">
         {success && <p className="success">Expense saved successfully!</p>}
         {error && <p className="error">{error}</p>}
@@ -111,8 +111,8 @@ const ExpenseForm = () => {
           </div>
         </form>
       </div>
-      <Footer/>
       </div>
+      <Footer/>
     </div>
   );
 };

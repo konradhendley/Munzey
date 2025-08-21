@@ -5,14 +5,15 @@ import Footer from './Footer';
 const LoadingSpinner = ({ standalone = true}) => {
   return (
     <div className={standalone ? 'wrapper' : ''}>
-      <div className={standalone ? 'content-container' : ''}>
-       {standalone && <Header />} 
+        {standalone && <Header />} 
+          <div className={standalone ? 'content-container' : ''}>
+
             <div>
             <div className="spinner"></div>
             <p>Loading...</p>
-            </div> 
-            {standalone && <Footer/>} 
+            </div>  
         </div>
+      {standalone && <Footer/>}
     </div>
   );
 };
