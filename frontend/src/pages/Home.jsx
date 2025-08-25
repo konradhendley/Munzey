@@ -33,6 +33,7 @@ const Home = () => {
         <div className="wrapper">
             <Header />
             <div className="content-container">
+            <div className="content">
                 
                 <h1>Welcome to Munzey</h1>
                 <div>
@@ -53,6 +54,7 @@ const Home = () => {
                     </div>
                     </div>
                 )}      
+                </div>
                 </div>
             <Footer />
         </div>

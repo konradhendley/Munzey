@@ -44,7 +44,7 @@ function Login() {
     <div className='wrapper'>
       <Header />
       <div className='content-container'>
-       
+        <div className="content">  
         <div className='form-container'>
           <form className='generic-form' onSubmit={handleLogin}>
             <h2>Login</h2>
@@ -77,6 +77,7 @@ function Login() {
               Don't have an account? <Link to="/signup">Sign Up</Link>
             </p>
         </div>        
+      </div>
       </div>
       <Footer />
     </div>

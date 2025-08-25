@@ -133,6 +133,7 @@ const Account = () => {
     <div className='wrapper'>
       <Header />
       <div className='content-container'>
+        <div className="content">
           <div className='form-container'>
             <form className='generic-form'>
             {isStandalone && !isEditing && (
@@ -194,6 +195,7 @@ const Account = () => {
              </form>
           </div>
       </div>
+    </div>
       <Footer />
     </div>
   );

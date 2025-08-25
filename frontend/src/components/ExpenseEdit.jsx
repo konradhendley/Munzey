@@ -130,6 +130,7 @@ const ExpenseEdit = () => {
     <div className='wrapper'>
        <Header />
       <div className='content-container'>
+      <div className="content">
       <div className='form-container'>
       {success && <p className="success">{success}</p>}
       {error && <p className="error">{error}</p>}
@@ -180,6 +181,7 @@ const ExpenseEdit = () => {
           </div>
         </form>
       </div>    
+    </div>
     </div>
     <Footer/>
   </div>

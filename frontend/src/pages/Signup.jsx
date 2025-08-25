@@ -58,7 +58,7 @@ const Signup = () => {
     <div className='wrapper'>
       <Header />
     <div className="content-container">
-      
+    <div className="content">
       <div className='form-container'>
       {message && <p className="success">{message}</p>}
       <form className='generic-form' onSubmit={handleSubmit}>
@@ -115,7 +115,7 @@ const Signup = () => {
         Already have an account? <Link to="/login">Log in</Link>
       </p>
         </div>
-        
+      </div>
     </div>
     <Footer/>
     </div>

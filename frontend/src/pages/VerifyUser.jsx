@@ -52,7 +52,8 @@ const Verify = () => {
   return (
     <div className='wrapper'>
       <Header />
-      <div className="content-container">  
+      <div className="content-container">
+      <div className="content">  
         <div className='form-container'>
           <div className="generic-form">
             <h2>Verify Your Email</h2>
@@ -87,6 +88,7 @@ const Verify = () => {
           </div>
         </div>
       </div>
+    </div>
       <Footer />
     </div>
   );

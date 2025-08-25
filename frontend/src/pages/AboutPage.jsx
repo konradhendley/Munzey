@@ -7,7 +7,8 @@ const About = () => {
   return (
     <div className='wrapper'>
        <Header />
-      <div className='content-container'>   
+      <div className='content-container'> 
+      <div className="content">  
         <div className='generic-text'>
           <p>
             Munzey is an expense tracking app created by <a href='https://www.linkedin.com/in/konradhendley/'>Konrad Hendley</a> in 2025. 
@@ -18,6 +19,7 @@ const About = () => {
             If you have any questions or would like to leave feedback, please feel free to <Link to="/contact">contact us</Link>!
           </p>
         </div>  
+      </div>
       </div>
       <Footer />
     </div>

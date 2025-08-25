@@ -63,6 +63,7 @@ const ExpenseList = ({ user, showHeader = true }) => {
     <div className={isStandalone ? 'wrapper' : ''}>
       {isStandalone && <Header />}
       <div className={isStandalone ? 'content-container' : ''}>
+      <div className="content">
         {loading ? (
             <div className="loading-container">
               <LoadingSpinner standalone={false}/> 
@@ -122,6 +123,7 @@ const ExpenseList = ({ user, showHeader = true }) => {
           </div>
         </div>
         )} 
+      </div>
       </div>
       {isStandalone && <Footer />}
     </div>
