@@ -24,6 +24,17 @@
     background: linear-gradient(to bottom right, #4CAF50, #2196F3); 
   }
 
+  .content {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
   /*generic text*/
   .generic-text {
     max-width: 600px; 

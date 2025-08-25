@@ -59,6 +59,7 @@ const ExpenseForm = () => {
     <div className='wrapper'>
       <Header />
       <div className='content-container'>
+      <div className="content">
       <div className="form-container">
         {success && <p className="success">Expense saved successfully!</p>}
         {error && <p className="error">{error}</p>}
@@ -110,6 +111,7 @@ const ExpenseForm = () => {
             <button type="button" onClick={handleCancel}> Cancel </button>
           </div>
         </form>
+      </div>
       </div>
       </div>
       <Footer/>

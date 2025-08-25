@@ -37,8 +37,7 @@ const Contact = () => {
     <div className='wrapper'>
        <Header />
       <div className='content-container'>
-       
-         
+        <div className="content"> 
           <div className='form-container'>
           <p className='generic-text'>
             Please fill out the form below with any questions or comments along with your contact information. 
@@ -78,7 +77,7 @@ const Contact = () => {
             </form>
           </div>
           </div>
-        
+        </div>
       </div>
       <Footer />
     </div>

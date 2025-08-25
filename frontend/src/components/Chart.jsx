@@ -131,6 +131,7 @@ const Chart = () => {
     <div className={location.pathname === '/chart' ? 'wrapper' : ''}>
         {location.pathname === '/chart' && <Header />}
           <div className={location.pathname === '/chart' ? 'content-container' : ''}>
+          <div className="content">
         {loading ? (
             <div className="loading-container">
               <LoadingSpinner standalone={false}/> 
@@ -187,6 +188,7 @@ const Chart = () => {
           </div>
         </div>
         )}   
+      </div>
       </div>
       {isStandalone && <Footer />}
     </div>

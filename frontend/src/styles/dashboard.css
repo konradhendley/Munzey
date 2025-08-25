@@ -71,7 +71,7 @@
 .dashboard-wrapper {
   flex-grow: 1;
   max-height: 100%;
-  overflow: auto;
+  overflow: hidden;
 }
 
 /* Links inside sections */
