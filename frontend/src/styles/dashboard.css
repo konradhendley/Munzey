@@ -33,6 +33,16 @@
   transition: all 0.3s ease-in-out;
   overflow: visible;
 }
+/* Dashboard grid */
+.dashboard-area {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+width: 100%;
+max-width: 1200px; 
+margin: 0 auto;
+padding: 20px 0;
+}
 
 /* Medium screens: 3 columns */
 @media (max-width: 1425px) {
