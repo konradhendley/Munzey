@@ -56,9 +56,9 @@ const Dashboard = () => {
           ) : expenses.length === 0 ? (
             <p className="empty-message">No expenses found. <Link to="/createExpense">Create an expense</Link></p>
           ) : (
-            <div className="dashboard-grid">
+            <div>
               {/* Left - Chart */}
-              <div className="dashboard-section">
+              <div className="flex-1">
                 <h2>Chart</h2> <Link to="/chart">View Chart</Link>
                 <div className="dashboard-wrapper">
                   <Chart showHeader={false} />
@@ -66,7 +66,7 @@ const Dashboard = () => {
               </div>
 
               {/* Middle - Expenses */}
-              <div className="dashboard-section">
+              <div className="flex-1">
                 <h2>Recent Expenses</h2> <Link to="/expenses">View Expenses</Link>
                 <div className="dashboard-wrapper">
                   <ExpenseList showHeader={false} />
@@ -74,7 +74,7 @@ const Dashboard = () => {
               </div>
 
               {/* Right - Calendar */}
-              <div className="dashboard-section">
+              <div className="flex-1">
                 <h2>Calendar</h2> <Link to="/calendar">View Calendar</Link>
                 <div className="dashboard-wrapper">
                   <Calendar />
