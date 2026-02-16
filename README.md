@@ -101,4 +101,4 @@ For questions, feature requests, or feedback:
 
 - GitHub Issues
 - LinkedIn: https://www.linkedin.com/in/konradhendley/
-- Munzey Contact Page: https://mymunzey.com/contact
+- Munzey Contact Page: https://munzey.com/contact
